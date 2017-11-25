@@ -26,4 +26,6 @@ object RecursiveIteration {
     }
     loop(xa, predicate)
   }
+
+  def partialApplication[A,B,C](a: A, f: (A, B) => C): B => C = b => f(a, b)
 }

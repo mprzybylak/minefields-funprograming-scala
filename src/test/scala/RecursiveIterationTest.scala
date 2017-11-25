@@ -69,6 +69,18 @@ class RecursiveIterationTest extends WordSpec with Matchers {
     "show that reverse-sorted array is sorted using reverse-sorted predicate" in {
       isSorted[Int](Array(3,2,1), (x,y) => x > y) shouldEqual true
     }
+  }
 
+  "partial application" should {
+
+    "turn adding into increment" in {
+
+      def add(a: Int, b: Int): Int = a + b
+
+      val standardPartial = add(1, _: Int)
+      val customPartial = partialApplication(1, add)
+
+      standardPartial(3) shouldEqual customPartial(3)
+    }
   }
 }
