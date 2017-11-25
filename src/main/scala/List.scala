@@ -24,6 +24,10 @@ case class Cons[+A](head: A, tail: List[A]) extends List[A]
   */
 object List {
 
+  def apply[A](elements: A*): List[A] = {
+    if(elements.isEmpty) Nil else Cons(elements.head, List(elements.tail: _*))
+  }
+
   def sum(xs: List[Int]): Int = xs match {
     case Nil => 0
     case Cons(head, tail) => head + sum(tail)

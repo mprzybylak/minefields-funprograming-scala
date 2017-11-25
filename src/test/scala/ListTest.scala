@@ -8,7 +8,7 @@ class ListTest extends WordSpec with Matchers {
 
     "be empty if not contains any elements" in {
 
-      // given
+      // when
       val list: List[Int] = Nil
 
       // then
@@ -17,7 +17,7 @@ class ListTest extends WordSpec with Matchers {
 
     "contains value if have one element" in {
 
-      // given
+      // when
       val list: List[Int] = Cons(1, Nil)
 
       // then
@@ -28,6 +28,24 @@ class ListTest extends WordSpec with Matchers {
 
       // given
       val list: List[Int] = Cons(1, Cons(2, Cons(3, Nil)))
+
+      // then
+      list shouldEqual Cons(1, Cons(2, Cons(3, Nil)))
+    }
+
+    "allows to construct itself from one element" in {
+
+      // when
+      val list = List(1)
+
+      // then
+      list shouldEqual Cons(1, Nil)
+    }
+
+    "allows to construct itself from many elements" in {
+
+      // when
+      val list = List(1, 2, 3)
 
       // then
       list shouldEqual Cons(1, Cons(2, Cons(3, Nil)))
