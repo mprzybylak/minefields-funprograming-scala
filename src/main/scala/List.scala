@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 
 /**
   * Sealed means that this class can be extend only inside this file
@@ -16,3 +17,17 @@ sealed trait List[+A]
 case object Nil extends List[Nothing]
 
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
+
+/**
+  * This is so called 'companion object' it have the same name as a type List
+  * Companion objects should contain all logic that is related to class but does not
+  * need instance of that class
+  */
+object List {
+
+  def sum(xs: List[Int]): Int = xs match {
+    case Nil => 0
+    case Cons(head, tail) => head + sum(tail)
+  }
+
+}

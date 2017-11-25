@@ -2,6 +2,8 @@ import org.scalatest.{Matchers, WordSpec}
 
 class ListTest extends WordSpec with Matchers {
 
+  import List._
+
   "list" should {
 
     "be empty if not contains any elements" in {
@@ -29,6 +31,33 @@ class ListTest extends WordSpec with Matchers {
 
       // then
       list shouldEqual Cons(1, Cons(2, Cons(3, Nil)))
+    }
+  }
+
+  "list of integers" should {
+
+    "allows to calculate sum of one element list" in {
+
+      // given
+      val list = Cons(1, Nil)
+
+      // when
+      val sumOfElements = sum(list)
+
+      // then
+      sumOfElements shouldEqual 1
+    }
+
+    "allows to calculate sum of multiple elements in list" in {
+
+      // given
+      val list = Cons(1, Cons(2, Cons(3, Nil)))
+
+      // when
+      val sumOfElements = sum(list)
+
+      // then
+      sumOfElements shouldEqual 6
     }
   }
 }
