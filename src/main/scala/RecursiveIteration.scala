@@ -21,7 +21,8 @@ object RecursiveIteration {
   }
 
   def isSorted[A](xa: Array[A], predicate: (A, A) => Boolean): Boolean = {
-    def loop[A](xa: Array[A], predicate: (A, A) => Boolean, n: Int = 0): Boolean = {
+    @tailrec
+    def loop(xa: Array[A], predicate: (A, A) => Boolean, n: Int = 0): Boolean = {
       if (xa.length - 1 <= n) true
       else if (predicate(xa(n), xa(n + 1))) loop(xa, predicate, n + 1)
       else false
