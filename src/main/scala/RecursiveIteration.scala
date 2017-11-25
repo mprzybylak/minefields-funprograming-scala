@@ -4,18 +4,20 @@ object RecursiveIteration {
 
   def factorial(n: Int): Int = {
     @tailrec
-    def factorial(n: Int, acc: Int): Int = {
+    def factorial(n: Int, acc: Int = 1): Int = {
       if(n <= 0) acc else factorial(n-1, n * acc)
     }
-    factorial(n, 1)
+    factorial(n)
   }
 
   def fibonacci(n: Int): Int = {
     @tailrec
-    def fib(n: Int, a: Int, b: Int): Int = {
+    def fib(n: Int, a: Int = 0, b: Int = 1): Int = {
       if(n < 1) a else fib(n - 1, a + b, a)
     }
-    fib(n, 0, 1)
+    fib(n)
+  }
+
   def isSorted[A](xa: Array[A], predicate: (A, A) => Boolean): Boolean = {
     def loop[A](xa: Array[A], predicate: (A, A) => Boolean, n: Int = 0): Boolean = {
       if(xa.length - 1 <= n ) true
