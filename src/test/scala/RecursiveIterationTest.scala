@@ -51,4 +51,24 @@ class RecursiveIterationTest extends WordSpec with Matchers {
       fibonacci(5) shouldEqual 5
     }
   }
+
+  "array sort checking" should {
+
+    "confirm that sorted array is sorted" in {
+      isSorted[Int](Array(1,2,3), (x,y) => x < y) shouldEqual true
+    }
+
+    "show that unordered array is not sorted" in {
+      isSorted[Int](Array(1,3,2), (x,y) => x < y) shouldEqual false
+    }
+
+    "show that reverse-sorted array is not sorted" in {
+      isSorted[Int](Array(3,2,1), (x,y) => x < y) shouldEqual false
+    }
+
+    "show that reverse-sorted array is sorted using reverse-sorted predicate" in {
+      isSorted[Int](Array(3,2,1), (x,y) => x > y) shouldEqual true
+    }
+
+  }
 }
