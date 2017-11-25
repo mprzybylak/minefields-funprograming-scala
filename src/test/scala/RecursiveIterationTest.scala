@@ -82,5 +82,24 @@ class RecursiveIterationTest extends WordSpec with Matchers {
 
       standardPartial(3) shouldEqual customPartial(3)
     }
+
+    "turn adding into increment with currying" in {
+
+      def add(a: Int, b: Int): Int = a + b
+
+      val standardPartial = add(1, _: Int)
+      val curryingPartial = currying(add)(1)
+
+      standardPartial(6) shouldEqual curryingPartial(6)
+    }
+
+    "turn curried adding into regular adding with uncurring" in {
+
+      def add(a: Int, b: Int): Int = a + b
+      val addCurry = (a:Int) => (b:Int) => a + b
+      val addUncurried = uncurrying(addCurry)
+
+      add(1,2) shouldEqual addUncurried(1,2)
+    }
   }
 }
