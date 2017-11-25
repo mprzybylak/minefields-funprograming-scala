@@ -1,4 +1,3 @@
-import scala.annotation.tailrec
 
 /**
   * Sealed means that this class can be extend only inside this file
@@ -27,6 +26,11 @@ object List {
 
   def sum(xs: List[Int]): Int = xs match {
     case Nil => 0
+    case Cons(head, tail) => head + sum(tail)
+  }
+
+  def product(xs: List[Int]): Int = xs match {
+    case Nil => 1
     case Cons(head, tail) => head + sum(tail)
   }
 
