@@ -36,6 +36,18 @@ class ListTest extends WordSpec with Matchers {
 
   "list of integers" should {
 
+    "allows to calculate sum of empty list" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val sumOfElements = sum(list)
+
+      // then
+      sumOfElements shouldEqual 0
+    }
+
     "allows to calculate sum of one element list" in {
 
       // given
