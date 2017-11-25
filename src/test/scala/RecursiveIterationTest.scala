@@ -55,19 +55,19 @@ class RecursiveIterationTest extends WordSpec with Matchers {
   "array sort checking" should {
 
     "confirm that sorted array is sorted" in {
-      isSorted[Int](Array(1,2,3), (x,y) => x < y) shouldEqual true
+      isSorted[Int](Array(1, 2, 3), (x, y) => x < y) shouldEqual true
     }
 
     "show that unordered array is not sorted" in {
-      isSorted[Int](Array(1,3,2), (x,y) => x < y) shouldEqual false
+      isSorted[Int](Array(1, 3, 2), (x, y) => x < y) shouldEqual false
     }
 
     "show that reverse-sorted array is not sorted" in {
-      isSorted[Int](Array(3,2,1), (x,y) => x < y) shouldEqual false
+      isSorted[Int](Array(3, 2, 1), (x, y) => x < y) shouldEqual false
     }
 
     "show that reverse-sorted array is sorted using reverse-sorted predicate" in {
-      isSorted[Int](Array(3,2,1), (x,y) => x > y) shouldEqual true
+      isSorted[Int](Array(3, 2, 1), (x, y) => x > y) shouldEqual true
     }
   }
 
@@ -96,10 +96,25 @@ class RecursiveIterationTest extends WordSpec with Matchers {
     "turn curried adding into regular adding with uncurring" in {
 
       def add(a: Int, b: Int): Int = a + b
-      val addCurry = (a:Int) => (b:Int) => a + b
+
+      val addCurry = (a: Int) => (b: Int) => a + b
       val addUncurried = uncurrying(addCurry)
 
-      add(1,2) shouldEqual addUncurried(1,2)
+      add(1, 2) shouldEqual addUncurried(1, 2)
+    }
+  }
+
+  "composition" should {
+
+    "compose two functions" in {
+
+      def identity(a: Int) = a
+
+      def inc(a: Int) = a + 1
+
+      val composed = compose(identity, inc)
+
+      composed(1) shouldEqual inc(identity(1))
     }
   }
 }
