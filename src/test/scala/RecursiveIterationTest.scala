@@ -26,4 +26,29 @@ class RecursiveIterationTest extends WordSpec with Matchers {
     }
   }
 
+  "fibonacci calculation" should {
+    "calculate 1st fib = 0" in {
+      fibonacci(0) shouldEqual 0
+    }
+
+    "calculate 2nd fib = 1" in {
+      fibonacci(1) shouldEqual 1
+    }
+
+    "calculate 3rd fib = 1" in {
+      fibonacci(2) shouldEqual 1
+    }
+
+    "calculate 4th fib = 2" in {
+      fibonacci(3) shouldEqual 2
+    }
+
+    "calculate 5th fib = 3" in {
+      fibonacci(4) shouldEqual 3
+    }
+
+    "calculate 6th fib = 5" in {
+      fibonacci(5) shouldEqual 5
+    }
+  }
 }

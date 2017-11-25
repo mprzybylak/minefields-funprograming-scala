@@ -9,4 +9,12 @@ object RecursiveIteration {
     }
     factorial(n, 1)
   }
+
+  def fibonacci(n: Int): Int = {
+    @tailrec
+    def fib(n: Int, a: Int, b: Int): Int = {
+      if(n < 1) a else fib(n - 1, a + b, a)
+    }
+    fib(n, 0, 1)
+  }
 }
