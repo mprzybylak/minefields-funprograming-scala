@@ -10,7 +10,7 @@ class HigherOrderFunctionsTest extends WordSpec with Matchers {
 
       // given
       def add(a: Int, b: Int): Int = a + b
-      val standardPartial = add(1, _: Int)
+      val standardPartial = add(1, _: Int) // this is scala syntax for partial application
 
       // when
       val customPartial = partialApplication(1, add)
@@ -36,7 +36,7 @@ class HigherOrderFunctionsTest extends WordSpec with Matchers {
 
       // given
       def add(a: Int, b: Int): Int = a + b
-      val addCurry = (a: Int) => (b: Int) => a + b
+      def addCurry(a: Int)(b: Int) = a + b // this is how we define curryied function in scala
 
       // when
       val addUncurried = uncurrying(addCurry)
