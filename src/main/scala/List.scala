@@ -24,7 +24,8 @@ case class Cons[+A](head: A, tail: List[A]) extends List[A]
   */
 object List {
 
-  def apply[A](elements: A*): List[A] = {
+  def apply[A](elements: A*): List[A] = { // A* means variadic args function
+    // _* operator means that collection (in this case sequence) should be passed as vararg
     if(elements.isEmpty) Nil else Cons(elements.head, List(elements.tail: _*))
   }
 
