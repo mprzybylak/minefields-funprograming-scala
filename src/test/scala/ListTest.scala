@@ -367,6 +367,55 @@ class ListTest extends WordSpec with Matchers {
       // then
       productOfElements shouldEqual 48
     }
+
+    "rebuild list using fold" in {
+
+      // given
+      val list = List(1,2,3)
+      val z:List[Int] = Nil
+
+      // when
+      val rebuildedList = foldRight(list, z)(Cons(_,_))
+
+      // then
+      rebuildedList shouldEqual list
+    }
+
+    "returns length of empty list" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val len = listLength(list)
+
+      // then
+      len shouldEqual 0
+    }
+
+    "returns length of single element list" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val len = listLength(list)
+
+      // then
+      len shouldEqual 1
+    }
+
+    "returns length of multiple element list" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val len = listLength(list)
+
+      // then
+      len shouldEqual 3
+    }
   }
 
   "list of integers" should {

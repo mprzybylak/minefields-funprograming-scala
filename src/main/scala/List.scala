@@ -89,4 +89,7 @@ object List {
     case Nil => z
     case Cons(h, t) => f(h, foldRight(t, z)(f))
   }
+
+  def listLength[A](as: List[A]): Int = foldRight(as, 0)((_, b) => b + 1)
+
 }
