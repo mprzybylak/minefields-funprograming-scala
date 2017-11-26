@@ -295,6 +295,78 @@ class ListTest extends WordSpec with Matchers {
       // then
       listWithoutLast shouldEqual Nil
     }
+
+    "allows to calculate sum of empty list using fold" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val sumOfElements = foldRight(list, 0)((a:Int, b:Int) => a + b)
+
+      // then
+      sumOfElements shouldEqual 0
+    }
+
+    "allows to calculate sum of one element list using fold" in {
+
+      // given
+      val list = Cons(1, Nil)
+
+      // when
+      val sumOfElements = foldRight(list, 0)((a:Int, b:Int) => a + b)
+
+      // then
+      sumOfElements shouldEqual 1
+    }
+
+    "allows to calculate sum of multiple elements in list using fold" in {
+
+      // given
+      val list = Cons(1, Cons(2, Cons(3, Nil)))
+
+      // when
+      val sumOfElements = foldRight(list, 0)((a:Int, b:Int) => a + b)
+
+      // then
+      sumOfElements shouldEqual 6
+    }
+
+    "allows to calculate product of empty list using fold" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val productOfElements = foldRight(list, 1)((a:Int, b:Int) => a * b)
+
+      // then
+      productOfElements shouldEqual 1
+    }
+
+    "allows to calculate product of one elemnt list using fold" in {
+
+      // given
+      val list = Cons(2, Nil)
+
+      // when
+      val productOfElements = foldRight(list, 1)((a:Int, b:Int) => a * b)
+
+      // then
+      productOfElements shouldEqual 2
+    }
+
+    "allows to calculate product of multiple elements in list using fold" in {
+
+      // given
+      val list = Cons(2, Cons(4, Cons(6, Nil)))
+
+      // when
+      val productOfElements = foldRight(list, 1)((a:Int, b:Int) => a * b)
+
+      // then
+      productOfElements shouldEqual 48
+    }
   }
 
   "list of integers" should {

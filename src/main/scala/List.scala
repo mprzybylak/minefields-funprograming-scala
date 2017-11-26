@@ -84,4 +84,9 @@ object List {
     case Nil => Nil
     case Cons(h, t) => if(tail(t) == Nil) Nil else Cons(h, init(t))
   }
+
+  def foldRight[A,B](xs: List[A], z: B)(f: (A,B) => B): B = xs match {
+    case Nil => z
+    case Cons(h, t) => f(h, foldRight(t, z)(f))
+  }
 }
