@@ -271,6 +271,30 @@ class ListTest extends WordSpec with Matchers {
       // then
       both shouldEqual List(1, 2, 3, 4, 5, 6)
     }
+
+    "allows to drop last element of empty list" in {
+
+      // given
+      val list = List()
+
+      // when
+      val listWithoutLast = init(list)
+
+      // then
+      listWithoutLast shouldEqual Nil
+    }
+
+    "allows to drop last element from single element list" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val listWithoutLast = init(list)
+
+      // then
+      listWithoutLast shouldEqual Nil
+    }
   }
 
   "list of integers" should {

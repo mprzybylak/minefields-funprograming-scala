@@ -63,4 +63,9 @@ object List {
     case Nil => second
     case Cons(h, t) => Cons(h, append(t, second))
   }
+
+  def init[A](list: List[A]): List[A] = list match {
+    case Nil => Nil
+    case Cons(h, t) => if(tail(t) == Nil) Nil else Cons(h, init(t))
+  }
 }
