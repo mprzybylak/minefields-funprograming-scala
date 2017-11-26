@@ -296,91 +296,6 @@ class ListTest extends WordSpec with Matchers {
       listWithoutLast shouldEqual Nil
     }
 
-    "allows to calculate sum of empty list using fold" in {
-
-      // given
-      val list: List[Int] = Nil
-
-      // when
-      val sumOfElements = foldRight(list, 0)(_ + _)
-
-      // then
-      sumOfElements shouldEqual 0
-    }
-
-    "allows to calculate sum of one element list using fold" in {
-
-      // given
-      val list = Cons(1, Nil)
-
-      // when
-      val sumOfElements = foldRight(list, 0)(_ + _)
-
-      // then
-      sumOfElements shouldEqual 1
-    }
-
-    "allows to calculate sum of multiple elements in list using fold" in {
-
-      // given
-      val list = Cons(1, Cons(2, Cons(3, Nil)))
-
-      // when
-      val sumOfElements = foldRight(list, 0)(_ + _)
-
-      // then
-      sumOfElements shouldEqual 6
-    }
-
-    "allows to calculate product of empty list using fold" in {
-
-      // given
-      val list: List[Int] = Nil
-
-      // when
-      val productOfElements = foldRight(list, 1)(_ * _)
-
-      // then
-      productOfElements shouldEqual 1
-    }
-
-    "allows to calculate product of one elemnt list using fold" in {
-
-      // given
-      val list = Cons(2, Nil)
-
-      // when
-      val productOfElements = foldRight(list, 1)(_ * _)
-
-      // then
-      productOfElements shouldEqual 2
-    }
-
-    "allows to calculate product of multiple elements in list using fold" in {
-
-      // given
-      val list = Cons(2, Cons(4, Cons(6, Nil)))
-
-      // when
-      val productOfElements = foldRight(list, 1)(_ * _)
-
-      // then
-      productOfElements shouldEqual 48
-    }
-
-    "rebuild list using fold" in {
-
-      // given
-      val list = List(1,2,3)
-      val z:List[Int] = Nil
-
-      // when
-      val rebuildedList = foldRight(list, z)(Cons(_,_))
-
-      // then
-      rebuildedList shouldEqual list
-    }
-
     "returns length of empty list" in {
 
       // given
@@ -415,6 +330,94 @@ class ListTest extends WordSpec with Matchers {
 
       // then
       len shouldEqual 3
+    }
+  }
+
+  "fold right function" should {
+
+    "allows to calculate sum of empty list using fold" in {
+
+      // given
+      val list: List[Int] = Nil
+
+      // when
+      val sumOfElements = foldRight(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 0
+    }
+
+    "allows to calculate sum of one element list using fold" in {
+
+      // given
+      val list = Cons(1, Nil)
+
+      // when
+      val sumOfElements = foldRight(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 1
+    }
+
+    "allows to calculate sum of multiple elements in list" in {
+
+      // given
+      val list = Cons(1, Cons(2, Cons(3, Nil)))
+
+      // when
+      val sumOfElements = foldRight(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 6
+    }
+
+    "allows to calculate product of empty list" in {
+
+      // given
+      val list: List[Int] = Nil
+
+      // when
+      val productOfElements = foldRight(list, 1)(_ * _)
+
+      // then
+      productOfElements shouldEqual 1
+    }
+
+    "allows to calculate product of one elemnt list" in {
+
+      // given
+      val list = Cons(2, Nil)
+
+      // when
+      val productOfElements = foldRight(list, 1)(_ * _)
+
+      // then
+      productOfElements shouldEqual 2
+    }
+
+    "allows to calculate product of multiple elements in list" in {
+
+      // given
+      val list = Cons(2, Cons(4, Cons(6, Nil)))
+
+      // when
+      val productOfElements = foldRight(list, 1)(_ * _)
+
+      // then
+      productOfElements shouldEqual 48
+    }
+
+    "allows to rebuild list" in {
+
+      // given
+      val list = List(1,2,3)
+      val z:List[Int] = Nil
+
+      // when
+      val rebuildedList = foldRight(list, z)(Cons(_,_))
+
+      // then
+      rebuildedList shouldEqual list
     }
   }
 
