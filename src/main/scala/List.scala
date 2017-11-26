@@ -54,6 +54,22 @@ object List {
     case Cons(_, t) => if (n > 1) drop(t, n - 1) else t
   }
 
+  /**
+    * Motivation behind having this function as curried:
+    *
+    * In case of non-curryied version our signature will look like this
+    * dropWhile[A](xs: List[A], predicate: A => Boolean): List[A]
+    *
+    * example of execution (for list of ints):
+    * dropWhile(list, (e:Int) => e > 5)
+    *
+    * scala is not able to infer type of e in passed predicate, but if we
+    * use curryied version - type will be infered:
+    * dropWhile(list)(e => e > 5)
+    *
+    * beacsue dropWhile(list) will return function with list of Int applyied
+    * so it is not possible to have later predicate with type other than Int
+    */
   def dropWhile[A](xs: List[A])(predicate: A => Boolean): List[A] = xs match {
     case Nil => Nil
     case Cons(h, t) => if (predicate(h)) dropWhile(t)(predicate) else xs
