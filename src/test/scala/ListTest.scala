@@ -567,6 +567,45 @@ class ListTest extends WordSpec with Matchers {
       // then
       reverseList shouldEqual List(3,2,1)
     }
+
+    "allows to calculate sum of empty list using fold left in terms of fold right" in {
+
+      // given
+      val list: List[Int] = Nil
+
+      // when
+      val sumOfElements = foldLeftInTermsOfFoldRight(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 0
+    }
+
+    "allows to calculate sum of one element list using fold in terms of fold right" in {
+
+      // given
+      val list = Cons(1, Nil)
+
+      // when
+      val sumOfElements = foldLeftInTermsOfFoldRight(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 1
+    }
+
+    "allows to calculate sum of multiple elements in list in terms of fold right" in  {
+
+      // givenw
+      val list = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil)))))
+
+      // when
+      val sumOfElements = foldLeftInTermsOfFoldRight(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 15
+    }
+
+
+
   }
 
   "list of integers" should {
