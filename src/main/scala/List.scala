@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 
 /**
   * Sealed means that this class can be extend only inside this file
@@ -88,6 +89,12 @@ object List {
   def foldRight[A,B](xs: List[A], z: B)(f: (A,B) => B): B = xs match {
     case Nil => z
     case Cons(h, t) => f(h, foldRight(t, z)(f))
+  }
+
+  @tailrec
+  def foldLeft[A,B](xs: List[A], z: B)(f: (B, A) => B): B = xs match {
+    case Nil => z
+    case Cons(h, t) => foldLeft(t, f(z,h))(f)
   }
 
   def listLength[A](as: List[A]): Int = foldRight(as, 0)((_, b) => b + 1)

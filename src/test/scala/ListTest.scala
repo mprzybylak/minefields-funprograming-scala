@@ -421,6 +421,45 @@ class ListTest extends WordSpec with Matchers {
     }
   }
 
+  "fold left" should {
+
+    "allows to calculate sum of empty list using fold" in {
+
+      // given
+      val list: List[Int] = Nil
+
+      // when
+      val sumOfElements = foldLeft(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 0
+    }
+
+    "allows to calculate sum of one element list using fold" in {
+
+      // given
+      val list = Cons(1, Nil)
+
+      // when
+      val sumOfElements = foldLeft(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 1
+    }
+
+    "allows to calculate sum of multiple elements in list" in  {
+
+      // given
+      val list = Cons(1, Cons(2, Cons(3, Nil)))
+
+      // when
+      val sumOfElements = foldLeft(list, 0)(_ + _)
+
+      // then
+      sumOfElements shouldEqual 6
+    }
+  }
+
   "list of integers" should {
 
     "allows to calculate sum of empty list" in {
