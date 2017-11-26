@@ -26,7 +26,7 @@ object List {
 
   def apply[A](elements: A*): List[A] = { // A* means variadic args function
     // _* operator means that collection (in this case sequence) should be passed as vararg
-    if(elements.isEmpty) Nil else Cons(elements.head, List(elements.tail: _*))
+    if (elements.isEmpty) Nil else Cons(elements.head, List(elements.tail: _*))
   }
 
   def sum(xs: List[Int]): Int = xs match {
@@ -56,11 +56,11 @@ object List {
 
   def dropWhile[A](xs: List[A], predicate: A => Boolean): List[A] = xs match {
     case Nil => Nil
-    case Cons(h,t) => if(predicate(h)) dropWhile(t, predicate) else xs
+    case Cons(h, t) => if (predicate(h)) dropWhile(t, predicate) else xs
   }
 
   def append[A](first: List[A], second: List[A]): List[A] = first match {
     case Nil => second
-    case Cons(h,t) => Cons(h, append(t, second))
+    case Cons(h, t) => Cons(h, append(t, second))
   }
 }

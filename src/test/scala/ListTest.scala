@@ -60,7 +60,7 @@ class ListTest extends WordSpec with Matchers {
       val tailOfList = tail(list)
 
       // then
-      tailOfList shouldEqual List(2,3)
+      tailOfList shouldEqual List(2, 3)
 
     }
 
@@ -91,13 +91,13 @@ class ListTest extends WordSpec with Matchers {
     "allows to change head of non-empty list" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
       val listWithNewHead = setHead(list, 10)
 
       // then
-      listWithNewHead shouldEqual List(10,2,3)
+      listWithNewHead shouldEqual List(10, 2, 3)
     }
 
     "allows to drop items from empty list" in {
@@ -175,49 +175,49 @@ class ListTest extends WordSpec with Matchers {
     "allows to drop elements from list with multiple elements" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
       val droppedList = drop(list, 1)
 
       // then
-      droppedList shouldEqual List(2,3)
+      droppedList shouldEqual List(2, 3)
     }
 
     "allows to drop elements from list with multiple elements with predicate" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
-      val droppedList = dropWhile(list, (e:Int) => e == 1)
+      val droppedList = dropWhile(list, (e: Int) => e == 1)
 
       // then
-      droppedList shouldEqual List(2,3)
+      droppedList shouldEqual List(2, 3)
     }
 
     "allows to drop many elements from list with multiple elements" in {
 
       // given
-      val list = List(1,2,3,4,5)
+      val list = List(1, 2, 3, 4, 5)
 
       // when
       val droppedList = drop(list, 3)
 
       // then
-      droppedList shouldEqual List(4,5)
+      droppedList shouldEqual List(4, 5)
     }
 
     "allows to drop many elements from list with multiple elements with predicate" in {
 
       // given
-      val list = List(1,2,3,4,5)
+      val list = List(1, 2, 3, 4, 5)
 
       // when
-      val droppedList = dropWhile(list, (e:Int) => e < 4)
+      val droppedList = dropWhile(list, (e: Int) => e < 4)
 
       // then
-      droppedList shouldEqual List(4,5)
+      droppedList shouldEqual List(4, 5)
     }
 
     "allows to append empty list to empty list" in {
@@ -237,39 +237,39 @@ class ListTest extends WordSpec with Matchers {
 
       // given
       val first = List()
-      val second = List(1,2,3)
+      val second = List(1, 2, 3)
 
       // when
       val both = append(first, second)
 
       // then
-      both shouldEqual List(1,2,3)
+      both shouldEqual List(1, 2, 3)
     }
 
     "allows to append empty list to list" in {
 
       // given
-      val first = List(1,2,3)
+      val first = List(1, 2, 3)
       val second = List()
 
       // when
       val both = append(first, second)
 
       // then
-      both shouldEqual List(1,2,3)
+      both shouldEqual List(1, 2, 3)
     }
 
     "allows to append list to list" in {
 
       // given
-      val first = List(1,2,3)
-      val second = List(4,5,6)
+      val first = List(1, 2, 3)
+      val second = List(4, 5, 6)
 
       // when
       val both = append(first, second)
 
       // then
-      both shouldEqual List(1,2,3,4,5,6)
+      both shouldEqual List(1, 2, 3, 4, 5, 6)
     }
   }
 
