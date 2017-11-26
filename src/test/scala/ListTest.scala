@@ -299,10 +299,10 @@ class ListTest extends WordSpec with Matchers {
     "allows to calculate sum of empty list using fold" in {
 
       // given
-      val list = Nil
+      val list: List[Int] = Nil
 
       // when
-      val sumOfElements = foldRight(list, 0)((a:Int, b:Int) => a + b)
+      val sumOfElements = foldRight(list, 0)(_ + _)
 
       // then
       sumOfElements shouldEqual 0
@@ -314,7 +314,7 @@ class ListTest extends WordSpec with Matchers {
       val list = Cons(1, Nil)
 
       // when
-      val sumOfElements = foldRight(list, 0)((a:Int, b:Int) => a + b)
+      val sumOfElements = foldRight(list, 0)(_ + _)
 
       // then
       sumOfElements shouldEqual 1
@@ -326,7 +326,7 @@ class ListTest extends WordSpec with Matchers {
       val list = Cons(1, Cons(2, Cons(3, Nil)))
 
       // when
-      val sumOfElements = foldRight(list, 0)((a:Int, b:Int) => a + b)
+      val sumOfElements = foldRight(list, 0)(_ + _)
 
       // then
       sumOfElements shouldEqual 6
@@ -335,10 +335,10 @@ class ListTest extends WordSpec with Matchers {
     "allows to calculate product of empty list using fold" in {
 
       // given
-      val list = Nil
+      val list: List[Int] = Nil
 
       // when
-      val productOfElements = foldRight(list, 1)((a:Int, b:Int) => a * b)
+      val productOfElements = foldRight(list, 1)(_ * _)
 
       // then
       productOfElements shouldEqual 1
@@ -350,7 +350,7 @@ class ListTest extends WordSpec with Matchers {
       val list = Cons(2, Nil)
 
       // when
-      val productOfElements = foldRight(list, 1)((a:Int, b:Int) => a * b)
+      val productOfElements = foldRight(list, 1)(_ * _)
 
       // then
       productOfElements shouldEqual 2
@@ -362,7 +362,7 @@ class ListTest extends WordSpec with Matchers {
       val list = Cons(2, Cons(4, Cons(6, Nil)))
 
       // when
-      val productOfElements = foldRight(list, 1)((a:Int, b:Int) => a * b)
+      val productOfElements = foldRight(list, 1)(_ * _)
 
       // then
       productOfElements shouldEqual 48
