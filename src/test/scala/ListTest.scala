@@ -75,6 +75,150 @@ class ListTest extends WordSpec with Matchers {
       // then
       tailOfList shouldEqual Nil
     }
+
+    "allows to change head of empty list" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val listWithHead = setHead(list, 1)
+
+      // then
+      listWithHead shouldEqual Cons(1, Nil)
+    }
+
+    "allows to change head of non-empty list" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val listWithNewHead = setHead(list, 10)
+
+      // then
+      listWithNewHead shouldEqual List(10,2,3)
+    }
+
+    "allows to drop items from empty list" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val droppedList = drop(list, 1)
+
+      // then
+      droppedList shouldEqual Nil
+    }
+
+    "allows to drop items from empty list with predicate" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val droppedList = dropWhile(list, (e: Any) => false)
+
+      // then
+      droppedList shouldEqual Nil
+    }
+
+    "allows to drop one element from list with one element" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val droppedList = drop(list, 1)
+
+      // then
+      droppedList shouldEqual Nil
+    }
+
+    "allows to drop one element from list with one element with predicate" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val droppedList = dropWhile(list, (e: Int) => true)
+
+      // then
+      droppedList shouldEqual Nil
+    }
+
+    "not drop one element from list with one element with predicate if predicate did not match element" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val droppedList = dropWhile(list, (e: Int) => false)
+
+      // then
+      droppedList shouldEqual List(1)
+    }
+
+    "allows to drop more elements than list contains" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val droppedList = drop(list, 10)
+
+      // then
+      droppedList shouldEqual Nil
+    }
+
+    "allows to drop elements from list with multiple elements" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val droppedList = drop(list, 1)
+
+      // then
+      droppedList shouldEqual List(2,3)
+    }
+
+    "allows to drop elements from list with multiple elements with predicate" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val droppedList = dropWhile(list, (e:Int) => e == 1)
+
+      // then
+      droppedList shouldEqual List(2,3)
+    }
+
+    "allows to drop many elements from list with multiple elements" in {
+
+      // given
+      val list = List(1,2,3,4,5)
+
+      // when
+      val droppedList = drop(list, 3)
+
+      // then
+      droppedList shouldEqual List(4,5)
+    }
+
+    "allows to drop many elements from list with multiple elements with predicate" in {
+
+      // given
+      val list = List(1,2,3,4,5)
+
+      // when
+      val droppedList = dropWhile(list, (e:Int) => e < 4)
+
+      // then
+      droppedList shouldEqual List(4,5)
+    }
   }
 
   "list of integers" should {

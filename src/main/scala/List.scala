@@ -36,11 +36,27 @@ object List {
 
   def product(xs: List[Int]): Int = xs match {
     case Nil => 1
-    case Cons(head, tail) => head + sum(tail)
+    case Cons(head, tail) => head * product(tail)
   }
 
   def tail[A](xs: List[A]): List[A] = xs match {
     case Nil => Nil
-    case Cons(head, tail) => tail
+    case Cons(_, t) => t
   }
+
+  def setHead[A](xs: List[A], newHead: A): List[A] = xs match {
+    case Nil => Cons(newHead, Nil)
+    case Cons(_, t) => Cons(newHead, t)
+  }
+
+  def drop[A](xs: List[A], n: Int): List[A] = xs match {
+    case Nil => Nil
+    case Cons(_, t) => if (n > 1) drop(t, n - 1) else t
+  }
+
+  def dropWhile[A](xs: List[A], predicate: A => Boolean): List[A] = xs match {
+    case Nil => Nil
+    case Cons(h,t) => if(predicate(h)) dropWhile(t, predicate) else xs
+  }
+
 }
