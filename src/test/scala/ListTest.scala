@@ -302,7 +302,7 @@ class ListTest extends WordSpec with Matchers {
       val list = Nil
 
       // when
-      val len = listLength(list)
+      val len = foldRightLength(list)
 
       // then
       len shouldEqual 0
@@ -314,7 +314,7 @@ class ListTest extends WordSpec with Matchers {
       val list = List(1)
 
       // when
-      val len = listLength(list)
+      val len = foldRightLength(list)
 
       // then
       len shouldEqual 1
@@ -326,7 +326,7 @@ class ListTest extends WordSpec with Matchers {
       val list = List(1,2,3)
 
       // when
-      val len = listLength(list)
+      val len = foldRightLength(list)
 
       // then
       len shouldEqual 3
@@ -493,6 +493,79 @@ class ListTest extends WordSpec with Matchers {
 
       // then
       productOfElements shouldEqual 48
+    }
+
+    "returns length of empty list" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val len = foldLeftLength(list)
+
+      // then
+      len shouldEqual 0
+    }
+
+    "returns length of single element list" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val len = foldLeftLength(list)
+
+      // then
+      len shouldEqual 1
+    }
+
+    "returns length of multiple element list" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val len = foldLeftLength(list)
+
+      // then
+      len shouldEqual 3
+    }
+
+    "returns reverted list for empty list" in {
+
+      // given
+      val list = List()
+
+      // when
+      val reverseList = reverseLeftFold(list)
+
+      // then
+      reverseList shouldEqual Nil
+
+    }
+
+    "returns reverted list for single element list" in {
+
+      // given
+      val list = List(1)
+
+      // when
+      val reverseList = reverseLeftFold(list)
+
+      // then
+      reverseList shouldEqual list
+    }
+
+    "returns reverted list for multiple elements list" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val reverseList = reverseLeftFold(list)
+
+      // then
+      reverseList shouldEqual List(3,2,1)
     }
   }
 

@@ -97,6 +97,9 @@ object List {
     case Cons(h, t) => foldLeft(t, f(z,h))(f)
   }
 
-  def listLength[A](as: List[A]): Int = foldRight(as, 0)((_, b) => b + 1)
+  def foldRightLength[A](as: List[A]): Int = foldRight(as, 0)((_, b) => b + 1)
 
+  def foldLeftLength[A](as: List[A]): Int = foldLeft(as, 0)((a, _) => a + 1)
+
+  def reverseLeftFold[A](as: List[A]): List[A] = foldLeft(as, Nil:List[A])((a,b) => Cons(b,a))
 }
