@@ -458,6 +458,42 @@ class ListTest extends WordSpec with Matchers {
       // then
       sumOfElements shouldEqual 6
     }
+
+    "allows to calculate product of empty list" in {
+
+      // given
+      val list: List[Int] = Nil
+
+      // when
+      val productOfElements = foldLeft(list, 1)(_ * _)
+
+      // then
+      productOfElements shouldEqual 1
+    }
+
+    "allows to calculate product of one elemnt list" in {
+
+      // given
+      val list = Cons(2, Nil)
+
+      // when
+      val productOfElements = foldLeft(list, 1)(_ * _)
+
+      // then
+      productOfElements shouldEqual 2
+    }
+
+    "allows to calculate product of multiple elements in list" in {
+
+      // given
+      val list = Cons(2, Cons(4, Cons(6, Nil)))
+
+      // when
+      val productOfElements = foldLeft(list, 1)(_ * _)
+
+      // then
+      productOfElements shouldEqual 48
+    }
   }
 
   "list of integers" should {
