@@ -59,4 +59,8 @@ object List {
     case Cons(h,t) => if(predicate(h)) dropWhile(t, predicate) else xs
   }
 
+  def append[A](first: List[A], second: List[A]): List[A] = first match {
+    case Nil => second
+    case Cons(h,t) => Cons(h, append(t, second))
+  }
 }

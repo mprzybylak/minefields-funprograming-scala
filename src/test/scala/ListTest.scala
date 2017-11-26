@@ -219,6 +219,58 @@ class ListTest extends WordSpec with Matchers {
       // then
       droppedList shouldEqual List(4,5)
     }
+
+    "allows to append empty list to empty list" in {
+
+      // given
+      val first = List()
+      val second = List()
+
+      // when
+      val both = append(first, second)
+
+      // then
+      both shouldEqual Nil
+    }
+
+    "allows to append list to empty list" in {
+
+      // given
+      val first = List()
+      val second = List(1,2,3)
+
+      // when
+      val both = append(first, second)
+
+      // then
+      both shouldEqual List(1,2,3)
+    }
+
+    "allows to append empty list to list" in {
+
+      // given
+      val first = List(1,2,3)
+      val second = List()
+
+      // when
+      val both = append(first, second)
+
+      // then
+      both shouldEqual List(1,2,3)
+    }
+
+    "allows to append list to list" in {
+
+      // given
+      val first = List(1,2,3)
+      val second = List(4,5,6)
+
+      // when
+      val both = append(first, second)
+
+      // then
+      both shouldEqual List(1,2,3,4,5,6)
+    }
   }
 
   "list of integers" should {
