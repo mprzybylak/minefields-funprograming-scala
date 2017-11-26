@@ -9,7 +9,7 @@ class ListTest extends WordSpec with Matchers {
     "be empty if not contains any elements" in {
 
       // when
-      val list: List[Int] = Nil
+      val list = Nil
 
       // then
       list shouldEqual Nil
@@ -18,7 +18,7 @@ class ListTest extends WordSpec with Matchers {
     "contains value if have one element" in {
 
       // when
-      val list: List[Int] = Cons(1, Nil)
+      val list = Cons(1, Nil)
 
       // then
       list shouldEqual Cons(1, Nil)
@@ -27,7 +27,7 @@ class ListTest extends WordSpec with Matchers {
     "allow to contains many elements" in {
 
       // given
-      val list: List[Int] = Cons(1, Cons(2, Cons(3, Nil)))
+      val list = Cons(1, Cons(2, Cons(3, Nil)))
 
       // then
       list shouldEqual Cons(1, Cons(2, Cons(3, Nil)))
@@ -118,7 +118,7 @@ class ListTest extends WordSpec with Matchers {
       val list = Nil
 
       // when
-      val droppedList = dropWhile(list, (e: Any) => false)
+      val droppedList = dropWhile(list)(e => false)
 
       // then
       droppedList shouldEqual Nil
@@ -142,7 +142,7 @@ class ListTest extends WordSpec with Matchers {
       val list = List(1)
 
       // when
-      val droppedList = dropWhile(list, (e: Int) => true)
+      val droppedList = dropWhile(list)(e => true)
 
       // then
       droppedList shouldEqual Nil
@@ -154,7 +154,7 @@ class ListTest extends WordSpec with Matchers {
       val list = List(1)
 
       // when
-      val droppedList = dropWhile(list, (e: Int) => false)
+      val droppedList = dropWhile(list)(e => false)
 
       // then
       droppedList shouldEqual List(1)
@@ -190,7 +190,7 @@ class ListTest extends WordSpec with Matchers {
       val list = List(1, 2, 3)
 
       // when
-      val droppedList = dropWhile(list, (e: Int) => e == 1)
+      val droppedList = dropWhile(list)(e => e == 1)
 
       // then
       droppedList shouldEqual List(2, 3)
@@ -214,7 +214,7 @@ class ListTest extends WordSpec with Matchers {
       val list = List(1, 2, 3, 4, 5)
 
       // when
-      val droppedList = dropWhile(list, (e: Int) => e < 4)
+      val droppedList = dropWhile(list)(e => e < 4)
 
       // then
       droppedList shouldEqual List(4, 5)

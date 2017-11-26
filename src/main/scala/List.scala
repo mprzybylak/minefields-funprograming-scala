@@ -54,9 +54,9 @@ object List {
     case Cons(_, t) => if (n > 1) drop(t, n - 1) else t
   }
 
-  def dropWhile[A](xs: List[A], predicate: A => Boolean): List[A] = xs match {
+  def dropWhile[A](xs: List[A])(predicate: A => Boolean): List[A] = xs match {
     case Nil => Nil
-    case Cons(h, t) => if (predicate(h)) dropWhile(t, predicate) else xs
+    case Cons(h, t) => if (predicate(h)) dropWhile(t)(predicate) else xs
   }
 
   def append[A](first: List[A], second: List[A]): List[A] = first match {
