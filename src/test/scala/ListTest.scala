@@ -50,6 +50,31 @@ class ListTest extends WordSpec with Matchers {
       // then
       list shouldEqual Cons(1, Cons(2, Cons(3, Nil)))
     }
+
+    "allows to return tail" in {
+
+      // given
+      val list = List(1, 2, 3)
+
+      // when
+      val tailOfList = tail(list)
+
+      // then
+      tailOfList shouldEqual List(2,3)
+
+    }
+
+    "allows to return tail of empty list" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val tailOfList = tail(list)
+
+      // then
+      tailOfList shouldEqual Nil
+    }
   }
 
   "list of integers" should {

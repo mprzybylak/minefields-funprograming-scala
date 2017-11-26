@@ -39,4 +39,8 @@ object List {
     case Cons(head, tail) => head + sum(tail)
   }
 
+  def tail[A](xs: List[A]): List[A] = xs match {
+    case Nil => Nil
+    case Cons(head, tail) => tail
+  }
 }
