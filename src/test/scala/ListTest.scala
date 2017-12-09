@@ -807,7 +807,7 @@ class ListTest extends WordSpec with Matchers {
     "should change list of ints to list of strings for non-empty list with fold" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
       val stringList = toStringList(list)
