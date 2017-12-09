@@ -118,4 +118,6 @@ object List {
 
   def addOne(list: List[Int]): List[Int] = foldRight(list, Nil:List[Int])((a,b) => Cons(a+1, b))
 
+  def toStringList(list: List[Int]): List[String] = foldRight(list, Nil:List[String])((a,b)=>Cons(a.toString, b))
+
 }

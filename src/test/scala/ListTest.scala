@@ -792,6 +792,30 @@ class ListTest extends WordSpec with Matchers {
       listPlusOne shouldEqual List(2, 3, 4)
     }
 
+    "should change list of ints to list of strings for empty list with fold" in {
+
+      // given
+      val list = List()
+
+      // when
+      val stringList = toStringList(list)
+
+      // then
+      stringList shouldEqual Nil
+    }
+
+    "should change list of ints to list of strings for non-empty list with fold" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val stringList = toStringList(list)
+
+      // then
+      stringList shouldEqual List("1", "2", "3")
+    }
+
 
   }
 }
