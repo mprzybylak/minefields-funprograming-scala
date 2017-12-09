@@ -816,6 +816,32 @@ class ListTest extends WordSpec with Matchers {
       stringList shouldEqual List("1", "2", "3")
     }
 
+    "should run function over empty lists" in {
+
+      // given
+      val list = List()
+
+      // when
+      val mapList = map(list)(a => a.toString)
+
+      // then
+      mapList shouldEqual Nil
+    }
+
+    "should run function over non-empty list" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val mapList = map(list)(a => a * 2)
+
+      // then
+      mapList shouldEqual List(2,4,6)
+    }
+
+
+
 
   }
 }
