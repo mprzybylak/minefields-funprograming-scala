@@ -83,41 +83,39 @@ object List {
 
   def init[A](list: List[A]): List[A] = list match {
     case Nil => Nil
-    case Cons(h, t) => if(tail(t) == Nil) Nil else Cons(h, init(t))
+    case Cons(h, t) => if (tail(t) == Nil) Nil else Cons(h, init(t))
   }
 
-  def foldRight[A,B](xs: List[A], z: B)(f: (A,B) => B): B = xs match {
+  def foldRight[A, B](xs: List[A], z: B)(f: (A, B) => B): B = xs match {
     case Nil => z
     case Cons(h, t) => f(h, foldRight(t, z)(f))
   }
 
   @tailrec
-  def foldLeft[A,B](xs: List[A], z: B)(f: (B, A) => B): B = xs match {
+  def foldLeft[A, B](xs: List[A], z: B)(f: (B, A) => B): B = xs match {
     case Nil => z
-    case Cons(h, t) => foldLeft(t, f(z,h))(f)
+    case Cons(h, t) => foldLeft(t, f(z, h))(f)
   }
 
-  def foldLeftInTermsOfFoldRight[A,B](xs: List[A], z: B)(f: (B, A) => B): B =
+  def foldLeftInTermsOfFoldRight[A, B](xs: List[A], z: B)(f: (B, A) => B): B =
     xs match {
-    case Nil => z
-    case Cons(h, t) =>
-      foldRight(t, f(z,h))((a,b)=>f(b,a))
+      case Nil => z
+      case Cons(h, t) =>
+        foldRight(t, f(z, h))((a, b) => f(b, a))
     }
 
   def foldRightLength[A](as: List[A]): Int = foldRight(as, 0)((_, b) => b + 1)
 
   def foldLeftLength[A](as: List[A]): Int = foldLeft(as, 0)((a, _) => a + 1)
 
-  def reverseLeftFold[A](as: List[A]): List[A] = foldLeft(as, Nil:List[A])((a,b) => Cons(b,a))
+  def reverseLeftFold[A](as: List[A]): List[A] = foldLeft(as, Nil: List[A])((a, b) => Cons(b, a))
 
-  def appendFold[A](first: List[A], second: List[A]): List[A] = {
-    foldRight(first, second)((a,b) => Cons(a,b))
-  }
+  def appendFold[A](first: List[A], second: List[A]): List[A] = foldRight(first, second)((a, b) => Cons(a, b))
 
-  def concat[A](list: List[List[A]]): List[A] = foldRight(list, Nil:List[A])(append)
+  def concat[A](list: List[List[A]]): List[A] = foldRight(list, Nil: List[A])(append)
 
-  def addOne(list: List[Int]): List[Int] = foldRight(list, Nil:List[Int])((a,b) => Cons(a+1, b))
+  def addOne(list: List[Int]): List[Int] = foldRight(list, Nil: List[Int])((a, b) => Cons(a + 1, b))
 
-  def toStringList(list: List[Int]): List[String] = foldRight(list, Nil:List[String])((a,b)=>Cons(a.toString, b))
+  def toStringList(list: List[Int]): List[String] = foldRight(list, Nil: List[String])((a, b) => Cons(a.toString, b))
 
 }
