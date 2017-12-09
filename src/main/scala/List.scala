@@ -122,7 +122,15 @@ object List {
 
   def filter[A](as: List[A])(f: A => Boolean): List[A] = foldRight(as, Nil:List[A])((a,b) => if(f(a)) Cons(a,b) else b)
 
+  def flatMapfilter[A](as: List[A])(f: A => Boolean): List[A] = flatMap(as)(a => if(f(a)) Cons(a,Nil) else Nil)
+
   def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = concat(map(as)(f))
+
+  def sumList(first: List[Int], second: List[Int]): List[Int] = (first, second) match {
+    case (Nil, _) => second
+    case (_, Nil) => first
+    case (Cons(h1, t1), Cons(h2, t2)) => Cons(h1 + h2, sumList(t1, t2))
+  }
 
 
 }

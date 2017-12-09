@@ -888,8 +888,107 @@ class ListTest extends WordSpec with Matchers {
       flatMapList shouldEqual List(2,4, 4, 8, 6, 12)
     }
 
+    "should filter empty list using flatMap" in {
 
+      // given
+      val list: List[Int] = List()
 
+      // when
+      val filterList = flatMapfilter(list)(a => a % 2 == 0)
+
+      // then
+      filterList shouldEqual Nil
+    }
+
+    "should filter odd elements using flatMap" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val filterList = flatMapfilter(list)(a => a % 2 == 0)
+
+      // then
+      filterList shouldEqual List(2)
+    }
+
+    "should add coresponding elements for empty lists" in {
+
+      // given
+      val first = List()
+      val second = List()
+
+      // when
+      val sum = sumList(first, second)
+
+      // then
+      sum shouldEqual Nil
+    }
+
+    "should add corresponding elements for first empty and second non-empty list" in {
+
+      // given
+      val first = List()
+      val second = List(1,2,3)
+
+      // when
+      val sum = sumList(first, second)
+
+      // then
+      sum shouldEqual List(1,2,3)
+    }
+
+    "should add corresponding elements for first non-empty list and second empty list" in {
+
+      // given
+      val first = List(1,2,3)
+      val second = List()
+
+      // when
+      val sum = sumList(first, second)
+
+      // then
+      sum shouldEqual List(1,2,3)
+    }
+
+    "should add corresponding elements for two non empty list with the same number of elements" in {
+
+      // given
+      val first = List(1,2,3)
+      val second = List(1,2,3)
+
+      // when
+      val sum = sumList(first, second)
+
+      // then
+      sum shouldEqual List(2,4,6)
+    }
+
+    "should add corresponding elements for two non empty list where first is longer" in {
+
+      // given
+      val first = List(1,2,3)
+      val second = List(1)
+
+      //when
+      val sum = sumList(first, second)
+
+      // then
+      sum shouldEqual List(2,2,3)
+    }
+
+    "should add corresponding elements for two non empty listwhere second is longer" in {
+
+      // given
+      val first = List(1)
+      val second = List(1,2,3)
+
+      // when
+      val sum = sumList(first, second)
+
+      // then
+      sum shouldEqual List(2,2,3)
+    }
 
   }
 }
