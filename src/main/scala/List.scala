@@ -109,4 +109,13 @@ object List {
   def foldLeftLength[A](as: List[A]): Int = foldLeft(as, 0)((a, _) => a + 1)
 
   def reverseLeftFold[A](as: List[A]): List[A] = foldLeft(as, Nil:List[A])((a,b) => Cons(b,a))
+
+  def appendFold[A](first: List[A], second: List[A]): List[A] = {
+    foldRight(first, second)((a,b) => Cons(a,b))
+  }
+
+  def concat[A](list: List[List[A]]): List[A] = foldRight(list, Nil:List[A])(append)
+
+  def addOne(list: List[Int]): List[Int] = foldRight(list, Nil:List[Int])((a,b) => Cons(a+1, b))
+
 }

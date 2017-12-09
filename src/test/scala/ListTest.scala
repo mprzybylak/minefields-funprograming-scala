@@ -233,6 +233,19 @@ class ListTest extends WordSpec with Matchers {
       both shouldEqual Nil
     }
 
+    "allows to append empty list to empty list with fold" in {
+
+      // given
+      val first = List()
+      val second = List()
+
+      // when
+      val both = appendFold(first, second)
+
+      // then
+      both shouldEqual Nil
+    }
+
     "allows to append list to empty list" in {
 
       // given
@@ -241,6 +254,19 @@ class ListTest extends WordSpec with Matchers {
 
       // when
       val both = append(first, second)
+
+      // then
+      both shouldEqual List(1, 2, 3)
+    }
+
+    "allow sto append list to empty list with fold" in {
+
+      // given
+      val first = List()
+      val second = List(1, 2, 3)
+
+      // when
+      val both = appendFold(first, second)
 
       // then
       both shouldEqual List(1, 2, 3)
@@ -259,6 +285,19 @@ class ListTest extends WordSpec with Matchers {
       both shouldEqual List(1, 2, 3)
     }
 
+    "allows to append empty list to list with fold" in {
+
+      // given
+      val first = List(1, 2, 3)
+      val second = List()
+
+      // when
+      val both = appendFold(first, second)
+
+      // then
+      both shouldEqual List(1, 2, 3)
+    }
+
     "allows to append list to list" in {
 
       // given
@@ -270,6 +309,54 @@ class ListTest extends WordSpec with Matchers {
 
       // then
       both shouldEqual List(1, 2, 3, 4, 5, 6)
+    }
+
+    "allows to concat list of list for Nil list" in {
+
+      // given
+      val list = Nil
+
+      // when
+      val c = concat(list)
+
+      // then
+      c shouldEqual Nil
+    }
+
+    "allows to concat list of list with single list" in {
+
+      // given
+      val list = List(List(1,2,3))
+
+      // when
+      val c = concat(list)
+
+      // then
+      c shouldEqual List(1, 2, 3)
+    }
+
+    "allows to concat list of list with two lists" in {
+
+      // given
+      val list = List(List(1,2,3), List(4,5,6))
+
+      // when
+      val c = concat(list)
+
+      // then
+      c shouldEqual List(1,2,3,4,5,6)
+    }
+
+    "allows to concat list of list with multiple lists" in {
+
+      // given
+      val list = List(List(1,2), List(3,4), List(5,6), List(7,8))
+
+      // when
+      val c = concat(list)
+
+      // then
+      c shouldEqual List(1,2,3,4,5,6,7,8)
     }
 
     "allows to drop last element of empty list" in {
@@ -681,5 +768,31 @@ class ListTest extends WordSpec with Matchers {
       // then
       productOfElements shouldEqual 48
     }
+
+    "should allow to add 1 to empty list with fold" in {
+
+      // given
+      val list = List()
+
+      // when
+      val listPlusOne = addOne(list)
+
+      // when
+      listPlusOne shouldEqual Nil
+    }
+
+    "should allow to add 1 to non empty list with fold" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val listPlusOne = addOne(list)
+
+      // then
+      listPlusOne shouldEqual List(2,3,4)
+    }
+
+
   }
 }
