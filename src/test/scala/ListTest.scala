@@ -840,6 +840,54 @@ class ListTest extends WordSpec with Matchers {
       mapList shouldEqual List(2,4,6)
     }
 
+    "should filter empty list" in {
+
+      // given
+      val list: List[Int] = List()
+
+      // when
+      val filterList = filter(list)(a => a % 2 == 0)
+
+      // then
+      filterList shouldEqual Nil
+    }
+
+    "should filter odd elements" in {
+
+      // given
+      val list = List(1,2,3)
+
+      // when
+      val filterList = filter(list)(a => a % 2 == 0)
+
+      // then
+      filterList shouldEqual List(2)
+    }
+
+    "should flatMap empty list" in {
+
+      // given
+      val list:List[Int] = List()
+
+      // when
+      val flatMapList = flatMap(list)(a => List(a * 2, a * 4))
+
+      // then
+      flatMapList shouldEqual Nil
+    }
+
+    "should flatMap non empty list" in {
+
+      // given
+      val list:List[Int] = List(1,2,3)
+
+      // when
+      val flatMapList = flatMap(list)(a => List(a*2, a*4))
+
+      // then
+      flatMapList shouldEqual List(2,4, 4, 8, 6, 12)
+    }
+
 
 
 
