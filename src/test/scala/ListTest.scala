@@ -326,7 +326,7 @@ class ListTest extends WordSpec with Matchers {
     "allows to concat list of list with single list" in {
 
       // given
-      val list = List(List(1,2,3))
+      val list = List(List(1, 2, 3))
 
       // when
       val c = concat(list)
@@ -338,25 +338,25 @@ class ListTest extends WordSpec with Matchers {
     "allows to concat list of list with two lists" in {
 
       // given
-      val list = List(List(1,2,3), List(4,5,6))
+      val list = List(List(1, 2, 3), List(4, 5, 6))
 
       // when
       val c = concat(list)
 
       // then
-      c shouldEqual List(1,2,3,4,5,6)
+      c shouldEqual List(1, 2, 3, 4, 5, 6)
     }
 
     "allows to concat list of list with multiple lists" in {
 
       // given
-      val list = List(List(1,2), List(3,4), List(5,6), List(7,8))
+      val list = List(List(1, 2), List(3, 4), List(5, 6), List(7, 8))
 
       // when
       val c = concat(list)
 
       // then
-      c shouldEqual List(1,2,3,4,5,6,7,8)
+      c shouldEqual List(1, 2, 3, 4, 5, 6, 7, 8)
     }
 
     "allows to drop last element of empty list" in {
@@ -410,7 +410,7 @@ class ListTest extends WordSpec with Matchers {
     "returns length of multiple element list" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
       val len = foldRightLength(list)
@@ -497,11 +497,11 @@ class ListTest extends WordSpec with Matchers {
     "allows to rebuild list" in {
 
       // given
-      val list = List(1,2,3)
-      val z:List[Int] = Nil
+      val list = List(1, 2, 3)
+      val z: List[Int] = Nil
 
       // when
-      val rebuildedList = foldRight(list, z)(Cons(_,_))
+      val rebuildedList = foldRight(list, z)(Cons(_, _))
 
       // then
       rebuildedList shouldEqual list
@@ -534,7 +534,7 @@ class ListTest extends WordSpec with Matchers {
       sumOfElements shouldEqual 1
     }
 
-    "allows to calculate sum of multiple elements in list" in  {
+    "allows to calculate sum of multiple elements in list" in {
 
       // given
       val list = Cons(1, Cons(2, Cons(3, Nil)))
@@ -609,7 +609,7 @@ class ListTest extends WordSpec with Matchers {
     "returns length of multiple element list" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
       val len = foldLeftLength(list)
@@ -646,13 +646,13 @@ class ListTest extends WordSpec with Matchers {
     "returns reverted list for multiple elements list" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
       val reverseList = reverseLeftFold(list)
 
       // then
-      reverseList shouldEqual List(3,2,1)
+      reverseList shouldEqual List(3, 2, 1)
     }
 
     "allows to calculate sum of empty list using fold left in terms of fold right" in {
@@ -679,7 +679,7 @@ class ListTest extends WordSpec with Matchers {
       sumOfElements shouldEqual 1
     }
 
-    "allows to calculate sum of multiple elements in list in terms of fold right" in  {
+    "allows to calculate sum of multiple elements in list in terms of fold right" in {
 
       // givenw
       val list = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil)))))
@@ -690,7 +690,6 @@ class ListTest extends WordSpec with Matchers {
       // then
       sumOfElements shouldEqual 15
     }
-
 
 
   }
@@ -784,13 +783,13 @@ class ListTest extends WordSpec with Matchers {
     "should allow to add 1 to non empty list with fold" in {
 
       // given
-      val list = List(1,2,3)
+      val list = List(1, 2, 3)
 
       // when
       val listPlusOne = addOne(list)
 
       // then
-      listPlusOne shouldEqual List(2,3,4)
+      listPlusOne shouldEqual List(2, 3, 4)
     }
 
 
