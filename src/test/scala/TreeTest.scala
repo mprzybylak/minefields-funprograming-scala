@@ -108,4 +108,43 @@ class TreeTest extends WordSpec with Matchers {
       depthOfTree shouldEqual 3
     }
   }
+
+  "a tree map" should {
+
+    "map int to string in leaf" in {
+
+      // given
+      val tree = Leaf(1)
+
+      // when
+      val mappedTree = treeMap(tree)(v => v.toString)
+
+      // then
+      mappedTree shouldEqual Leaf("1")
+    }
+
+    "map int to string in branch with leafs" in {
+
+      // given
+      val tree = Branch(Leaf(1), Leaf(2))
+
+      // when
+      val mappedTree = treeMap(tree)(v => v.toString)
+
+      // then
+      mappedTree shouldEqual Branch(Leaf("1"), Leaf("2"))
+    }
+
+    "multiply each value by 2" in {
+
+      // given
+      val tree = Branch(Leaf(1), Leaf(2))
+
+      // when
+      val mappedTree = treeMap(tree)(v => v * 2)
+
+      // when
+      mappedTree shouldEqual Branch(Leaf(2), Leaf(4))
+    }
+  }
 }
