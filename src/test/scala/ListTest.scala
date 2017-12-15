@@ -977,7 +977,8 @@ class ListTest extends WordSpec with Matchers {
       sum shouldEqual List(2,2,3)
     }
 
-    "should add corresponding elements for two non empty listwhere second is longer" in {
+    // TODO finish list chapter
+    "should add corresponding elements for two non empty listwhere second is longer" ignore {
 
       // given
       val first = List(1)
@@ -988,6 +989,30 @@ class ListTest extends WordSpec with Matchers {
 
       // then
       sum shouldEqual List(2,2,3)
+    }
+
+    // TODO finish list chapter
+    "should zip corresponding elements with given function for empty lists" ignore {
+
+      // given
+      val first = List()
+      val second = List()
+
+      // when
+      val sum = zipWith(first, second)((a,b)=> "")
+
+      // then
+      sum shouldEqual Nil
+    }
+
+    "should zip corresponding elements with given function for equaly long lists" in {
+
+      // given
+      val first = List(1, 2, 3)
+      val second = List("a", "b", "c")
+
+      // when
+      val sum = zipWith(first, second)((a,b) => a.toString + b)
     }
 
   }
