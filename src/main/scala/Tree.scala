@@ -14,4 +14,9 @@ object Tree {
     case Branch(left, right) => treeMax(left).max(treeMax(right))
   }
 
+  def treeDepth[A](tree: Tree[A]): Int = tree match {
+    case Leaf(_) => 1
+    case Branch(l, r) => 1 + treeDepth(l).max(treeDepth(r))
+  }
+
 }

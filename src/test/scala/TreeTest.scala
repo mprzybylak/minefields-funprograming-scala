@@ -68,10 +68,44 @@ class TreeTest extends WordSpec with Matchers {
       //then
       maxiumOfTree shouldEqual 2
     }
-
-
-
   }
 
+  "a tree depth" should {
 
+    "be equal to 1 for leaf" in {
+
+      // given
+      val tree = Leaf(1)
+
+      // when
+      val depthOfTree = treeDepth(tree)
+
+      // when
+      depthOfTree shouldEqual 1
+    }
+
+    "be equal to 2 for branch with leafs" in {
+
+      // given
+      val tree = Branch(Leaf(1), Leaf(1))
+
+      // when
+      val depthOfTree = treeDepth(tree)
+
+      // then
+      depthOfTree shouldEqual 2
+    }
+
+    "be equal to 3 for branch with leaf on one side and branch with leafs on other" in {
+
+      // given
+      val tree = Branch(Leaf(1), Branch(Leaf(1), Leaf(1)))
+
+      // when
+      val depthOfTree = treeDepth(tree)
+
+      // when
+      depthOfTree shouldEqual 3
+    }
+  }
 }
