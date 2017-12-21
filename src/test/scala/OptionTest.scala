@@ -67,4 +67,28 @@ class OptionTest extends WordSpec with Matchers {
       mappedOption shouldEqual Some("2")
     }
   }
+
+  "get or else should return defautl value for None" in {
+
+    // given
+    val option = None
+
+    // when
+    val getOrDefaultValue = option.getOrElse(10)
+
+    // then
+    getOrDefaultValue shouldEqual 10
+  }
+
+  "get or else should return value inside option in case of Some" in {
+
+    // given
+    val option = Some(1)
+
+    // wheb
+    val getOrDefaultValue = option.getOrElse(100)
+
+    // then
+    getOrDefaultValue shouldEqual 1
+  }
 }
