@@ -2,7 +2,7 @@ import org.scalatest.{Matchers, WordSpec}
 
 class OptionTest extends WordSpec with Matchers {
 
-  "An Option" should {
+  "map in Option" should {
 
     "allows to map None to None" in {
 
@@ -23,6 +23,45 @@ class OptionTest extends WordSpec with Matchers {
 
       // when
       val mappedOption = option.map(x => x.toString)
+
+      // then
+      mappedOption shouldEqual Some("2")
+    }
+  }
+
+  "flat map in Option" should {
+
+    "allows to map None to None" in {
+
+      // given
+      val option = None
+
+      // when
+      val mappedOption = option.flatMap(x => Some(x))
+
+      // then
+      mappedOption shouldEqual None
+    }
+
+    "allows to map option to None" in {
+
+      // given
+      val option = Some(2)
+
+      // when
+      val mappedOption = option.flatMap(x => None)
+
+      // then
+      mappedOption shouldEqual None
+    }
+
+    "allows to map some value to some other value" in {
+
+      // given
+      val option = Some(2)
+
+      // when
+      val mappedOption = option.flatMap(x => Some("2"))
 
       // then
       mappedOption shouldEqual Some("2")
