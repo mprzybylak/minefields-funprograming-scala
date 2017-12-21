@@ -18,6 +18,19 @@ class TreeTest extends WordSpec with Matchers {
       sizeOfTree shouldEqual 1
     }
 
+    "be equal to 1 for leaf using fold" in {
+
+      // given
+      val tree = Leaf(10)
+
+      // when
+      val sizeOfTree = treeSize(tree)
+      val sizeOfTreeFold = treeSizeFold(tree)
+
+      // then
+      sizeOfTreeFold shouldEqual sizeOfTree
+    }
+
     "be equal to 3 for one branch with leafs" in {
 
       // given
@@ -30,6 +43,19 @@ class TreeTest extends WordSpec with Matchers {
       sizeOfTree shouldEqual 3
     }
 
+    "be equal to 3 for one branch with leafs using fold" in {
+
+      // given
+      val tree = Branch(Leaf(1), Leaf(2))
+
+      // when
+      val sizeOfTree = treeSize(tree)
+      val sizeOfTreeFold = treeSizeFold(tree)
+
+      // then
+      sizeOfTreeFold shouldEqual sizeOfTree
+    }
+
     "be equal to 7 for full 3 levels tree" in {
 
       // given
@@ -40,6 +66,19 @@ class TreeTest extends WordSpec with Matchers {
 
       // then
       sizeOfTree shouldEqual 7
+    }
+
+    "be equal to 7 for full 3 levels tree using fold" in {
+
+      // given
+      val tree = Branch(Branch(Leaf(1), Leaf(2)), Branch(Leaf(3), Leaf(4)))
+
+      // when
+      val sizeOfTree = treeSize(tree)
+      val sizeOfTreeFold = treeSizeFold(tree)
+
+      // then
+      sizeOfTreeFold shouldEqual sizeOfTree
     }
   }
 
@@ -57,6 +96,19 @@ class TreeTest extends WordSpec with Matchers {
       maxiumOfTree shouldEqual 1
     }
 
+    "equals 1 for leaf with value 1 using fold" in {
+
+      // given
+      val tree = Leaf(1)
+
+      // when
+      val maxiumOfTree = treeMax(tree)
+      val maxiumOfTreeFold = treeMaxFold(tree)
+
+      // then
+      maxiumOfTreeFold shouldEqual maxiumOfTree
+    }
+
     "equals 2 for branch with leaf equal to 1 and 2" in {
 
       // given
@@ -68,6 +120,21 @@ class TreeTest extends WordSpec with Matchers {
       //then
       maxiumOfTree shouldEqual 2
     }
+
+    "equals 2 for branch with leaf equal to 1 and 2 using fold" in {
+
+      // given
+      val tree = Branch(Leaf(1), Leaf(2))
+
+      // when
+      val maxiumOfTree = treeMax(tree)
+      val maxiumOfTreeFold = treeMaxFold(tree)
+
+      //then
+      maxiumOfTreeFold shouldEqual maxiumOfTree
+    }
+
+
   }
 
   "a tree depth" should {
@@ -84,6 +151,19 @@ class TreeTest extends WordSpec with Matchers {
       depthOfTree shouldEqual 1
     }
 
+    "be equal to 1 for leaf using fold" in {
+
+      // given
+      val tree = Leaf(1)
+
+      // when
+      val depthOfTree = treeDepth(tree)
+      val depthOfTreeFold = treeDepthFold(tree)
+
+      // when
+      depthOfTree shouldEqual depthOfTreeFold
+    }
+
     "be equal to 2 for branch with leafs" in {
 
       // given
@@ -94,6 +174,19 @@ class TreeTest extends WordSpec with Matchers {
 
       // then
       depthOfTree shouldEqual 2
+    }
+
+    "be equal to 2 for branch with leafs using fold" in {
+
+      // given
+      val tree = Branch(Leaf(1), Leaf(1))
+
+      // when
+      val depthOfTree = treeDepth(tree)
+      val depthOfTreeFold = treeDepthFold(tree)
+
+      // then
+      depthOfTree shouldEqual depthOfTreeFold
     }
 
     "be equal to 3 for branch with leaf on one side and branch with leafs on other" in {
@@ -107,6 +200,20 @@ class TreeTest extends WordSpec with Matchers {
       // when
       depthOfTree shouldEqual 3
     }
+
+    "be equal to 3 for branch with leaf on one side and branch with leafs on other using fold" in {
+
+      // given
+      val tree = Branch(Leaf(1), Branch(Leaf(1), Leaf(1)))
+
+      // when
+      val depthOfTree = treeDepth(tree)
+      val depthOfTreeFold = treeDepthFold(tree)
+
+      // when
+      depthOfTree shouldEqual depthOfTreeFold
+    }
+
   }
 
   "a tree map" should {
@@ -122,6 +229,7 @@ class TreeTest extends WordSpec with Matchers {
       // then
       mappedTree shouldEqual Leaf("1")
     }
+
 
     "map int to string in branch with leafs" in {
 
