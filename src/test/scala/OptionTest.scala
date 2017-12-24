@@ -68,27 +68,57 @@ class OptionTest extends WordSpec with Matchers {
     }
   }
 
-  "get or else should return defautl value for None" in {
+  "get or else in option" should {
 
-    // given
-    val option = None
+    "return defautl value for None" in {
 
-    // when
-    val getOrDefaultValue = option.getOrElse(10)
+      // given
+      val option = None
 
-    // then
-    getOrDefaultValue shouldEqual 10
+      // when
+      val getOrDefaultValue = option.getOrElse(10)
+
+      // then
+      getOrDefaultValue shouldEqual 10
+    }
+
+    "return value inside option in case of Some" in {
+
+      // given
+      val option = Some(1)
+
+      // wheb
+      val getOrDefaultValue = option.getOrElse(100)
+
+      // then
+      getOrDefaultValue shouldEqual 1
+    }
   }
 
-  "get or else should return value inside option in case of Some" in {
+  "orElse in option" should {
 
-    // given
-    val option = Some(1)
+    "return default option in case of None" in {
 
-    // wheb
-    val getOrDefaultValue = option.getOrElse(100)
+      // given
+      val option = None
 
-    // then
-    getOrDefaultValue shouldEqual 1
+      // when
+      val orElseValue = option.orElse(Some(2))
+
+      // then
+      orElseValue shouldEqual Some(2)
+    }
+
+    "return value inside in case of Some" in {
+
+      // given
+      val option = Some(3)
+
+      // when
+      val orElseValue = option.orElse(Some("A"))
+
+      // then
+      orElseValue shouldEqual Some(3)
+    }
   }
 }
