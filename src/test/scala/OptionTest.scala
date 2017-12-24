@@ -193,13 +193,40 @@ class OptionTest extends WordSpec with Matchers {
     "be calculated for two elements sequence" in {
 
       // given
-      val seq = Seq(2.0, 4.0) // 3    1 + 1
+      val seq = Seq(2.0, 4.0)
 
       // when
       val v = variance(seq)
 
       // then
       v shouldEqual Some(1.0)
+    }
+  }
+
+  "lift" should {
+
+    "create abs function that returns None for None" in {
+
+      // given
+      val absLift = lift(math.abs)
+
+      // when
+      val absOption = absLift(None)
+
+      // then
+      absOption shouldEqual None
+    }
+
+    "create abs function that returns abs value for Some" in {
+
+      // given
+      val absLift = lift(math.abs)
+
+      // when
+      val absOption = absLift(Some(-3))
+
+      // then
+      absOption shouldEqual Some(3)
     }
   }
 }
