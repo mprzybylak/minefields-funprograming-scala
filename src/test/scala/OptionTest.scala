@@ -229,4 +229,58 @@ class OptionTest extends WordSpec with Matchers {
       absOption shouldEqual Some(3)
     }
   }
+
+  "map2 function" should {
+
+    "return none for two Nones" in {
+
+      // given
+      val first: Option[Int] = None
+      val second: Option[Int] = None
+
+      // when
+      val result = map2(first, second)((a,b) => a + b)
+
+      // then
+      result shouldEqual None
+    }
+
+    "return None if first argument is None" in {
+
+      // given
+      val first: Option[Int] = None
+      val second: Option[Int] = Some(3)
+
+      // when
+      val result = map2(first, second)((a,b) => a + b)
+
+      // then
+      result shouldEqual None
+    }
+
+    "return None if second argument is None" in {
+
+      // given
+      val first: Option[Int] = Some(3)
+      val second: Option[Int] = None
+
+      // when
+      val result = map2(first, second)((a,b) => a + b)
+
+      // then
+      result shouldEqual None
+    }
+
+    "map both options with function in case of two Some" in {
+
+      val first: Option[Int] = Some(3)
+      val second: Option[Int] = Some(6)
+
+      // when
+      val result = map2(first, second)((a,b) => a + b)
+
+      // then
+      result shouldEqual Some(9)
+    }
+  }
 }

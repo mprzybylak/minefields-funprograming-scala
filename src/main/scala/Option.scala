@@ -41,5 +41,10 @@ object Option {
 
   def lift[A,B](f: A => B): Option[A] => Option[B] = _ map f
 
-
+  def map2[A,B,C](first: Option[A], second: Option[B])(f: (A,B) => C):Option[C] = {
+    (first, second) match {
+      case (Some(a), Some(b)) => Some(f(a, b))
+      case _ => None
+    }
+  }
 }
