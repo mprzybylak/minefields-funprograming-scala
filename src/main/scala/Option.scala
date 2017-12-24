@@ -29,3 +29,14 @@ case object None extends Option[Nothing] {
 
   override def filter(f: Nothing => Boolean): Option[Nothing] = None
 }
+
+object Option {
+
+  def mean(xs: Seq[Double]) : Option[Double] = xs match {
+    case Seq() => None
+    case s => Some(s.sum / s.length)
+  }
+
+  def variance(xs: Seq[Double]): Option[Double] = mean(xs) flatMap(m => mean(xs map(x => math pow(x-m,2))))
+
+}

@@ -2,6 +2,8 @@ import org.scalatest.{Matchers, WordSpec}
 
 class OptionTest extends WordSpec with Matchers {
 
+  import Option._
+
   "map in Option" should {
 
     "allows to map None to None" in {
@@ -158,6 +160,46 @@ class OptionTest extends WordSpec with Matchers {
       // then
       filteredValue shouldEqual None
 
+    }
+  }
+
+  "variance" should {
+
+    "be not calculated for empty" in {
+
+      // given
+      val seq = Seq()
+
+      // when
+      val v = variance(seq)
+
+      // then
+      v shouldEqual None
+    }
+
+    "be calciulated for one element sequence" in {
+
+      // given
+      val seq = Seq(2.0)
+
+      // when
+      val v = variance(seq)
+
+      // then
+      v shouldEqual Some(0.0)
+
+    }
+
+    "be calculated for two elements sequence" in {
+
+      // given
+      val seq = Seq(2.0, 4.0) // 3    1 + 1
+
+      // when
+      val v = variance(seq)
+
+      // then
+      v shouldEqual Some(1.0)
     }
   }
 }
