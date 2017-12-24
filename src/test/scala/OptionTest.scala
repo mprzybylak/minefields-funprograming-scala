@@ -121,4 +121,43 @@ class OptionTest extends WordSpec with Matchers {
       orElseValue shouldEqual Some(3)
     }
   }
+
+  "filter in option" should {
+
+    "return None in case of None" in {
+
+      // given
+      val option: Option[Int] = None
+
+      // when
+      val filteredValue = option.filter(_ > 2)
+
+      // then
+      filteredValue shouldEqual None
+    }
+
+    "return Some in case of Some matching predicate" in {
+      // given
+      val option = Some(2)
+
+      // when
+      val filteredValue = option.filter(_ == 2)
+
+      // when
+      filteredValue shouldEqual Some(2)
+    }
+
+    "return None in case of Some not-matching predicate" in {
+
+      // given
+      val option = Some(2)
+
+      // when
+      val filteredValue = option.filter(_ != 2)
+
+      // then
+      filteredValue shouldEqual None
+
+    }
+  }
 }
