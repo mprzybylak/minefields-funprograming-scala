@@ -1,3 +1,5 @@
+package com.stackframelayout.minefields.funprog.functions
+
 import scala.annotation.tailrec
 
 object RecursiveIteration {

@@ -1,8 +1,10 @@
+package com.stackframelayout.minefields.funprog.collections
+
 import org.scalatest.{Matchers, WordSpec}
 
-import Tree._
-
 class TreeTest extends WordSpec with Matchers {
+
+  import com.stackframelayout.minefields.funprog.collections.Tree._
 
   "a tree size" should {
 

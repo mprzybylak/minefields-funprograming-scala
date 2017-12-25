@@ -1,33 +1,36 @@
+package com.stackframelayout.minefields.funprog.errors
+
+import com.stackframelayout.minefields.funprog.errors
 import org.scalatest.{Matchers, WordSpec}
 
 class OptionTest extends WordSpec with Matchers {
 
-  import Option._
+  import com.stackframelayout.minefields.funprog.errors.Option._
 
   "map in Option" should {
 
     "allows to map None to None" in {
 
       // given
-      val option = None
+      val option = errors.None
 
       // when
       val mappedOption = option.map(x => 2)
 
       // then
-      mappedOption shouldEqual None
+      mappedOption shouldEqual errors.None
     }
 
     "allows to map int to string" in {
 
       // given
-      val option = Some(2)
+      val option = errors.Some(2)
 
       // when
       val mappedOption = option.map(x => x.toString)
 
       // then
-      mappedOption shouldEqual Some("2")
+      mappedOption shouldEqual errors.Some("2")
     }
   }
 
@@ -36,37 +39,37 @@ class OptionTest extends WordSpec with Matchers {
     "allows to map None to None" in {
 
       // given
-      val option = None
+      val option = errors.None
 
       // when
-      val mappedOption = option.flatMap(x => Some(x))
+      val mappedOption = option.flatMap(x => errors.Some(x))
 
       // then
-      mappedOption shouldEqual None
+      mappedOption shouldEqual errors.None
     }
 
     "allows to map option to None" in {
 
       // given
-      val option = Some(2)
+      val option = errors.Some(2)
 
       // when
-      val mappedOption = option.flatMap(x => None)
+      val mappedOption = option.flatMap(x => errors.None)
 
       // then
-      mappedOption shouldEqual None
+      mappedOption shouldEqual errors.None
     }
 
     "allows to map some value to some other value" in {
 
       // given
-      val option = Some(2)
+      val option = errors.Some(2)
 
       // when
-      val mappedOption = option.flatMap(x => Some("2"))
+      val mappedOption = option.flatMap(x => errors.Some("2"))
 
       // then
-      mappedOption shouldEqual Some("2")
+      mappedOption shouldEqual errors.Some("2")
     }
   }
 
@@ -75,7 +78,7 @@ class OptionTest extends WordSpec with Matchers {
     "return defautl value for None" in {
 
       // given
-      val option = None
+      val option = errors.None
 
       // when
       val getOrDefaultValue = option.getOrElse(10)
@@ -87,7 +90,7 @@ class OptionTest extends WordSpec with Matchers {
     "return value inside option in case of Some" in {
 
       // given
-      val option = Some(1)
+      val option = errors.Some(1)
 
       // wheb
       val getOrDefaultValue = option.getOrElse(100)
@@ -102,25 +105,25 @@ class OptionTest extends WordSpec with Matchers {
     "return default option in case of None" in {
 
       // given
-      val option = None
+      val option = errors.None
 
       // when
-      val orElseValue = option.orElse(Some(2))
+      val orElseValue = option.orElse(errors.Some(2))
 
       // then
-      orElseValue shouldEqual Some(2)
+      orElseValue shouldEqual errors.Some(2)
     }
 
     "return value inside in case of Some" in {
 
       // given
-      val option = Some(3)
+      val option = errors.Some(3)
 
       // when
-      val orElseValue = option.orElse(Some("A"))
+      val orElseValue = option.orElse(errors.Some("A"))
 
       // then
-      orElseValue shouldEqual Some(3)
+      orElseValue shouldEqual errors.Some(3)
     }
   }
 
@@ -129,36 +132,36 @@ class OptionTest extends WordSpec with Matchers {
     "return None in case of None" in {
 
       // given
-      val option: Option[Int] = None
+      val option: errors.Option[Int] = errors.None
 
       // when
       val filteredValue = option.filter(_ > 2)
 
       // then
-      filteredValue shouldEqual None
+      filteredValue shouldEqual errors.None
     }
 
     "return Some in case of Some matching predicate" in {
       // given
-      val option = Some(2)
+      val option = errors.Some(2)
 
       // when
       val filteredValue = option.filter(_ == 2)
 
       // when
-      filteredValue shouldEqual Some(2)
+      filteredValue shouldEqual errors.Some(2)
     }
 
     "return None in case of Some not-matching predicate" in {
 
       // given
-      val option = Some(2)
+      val option = errors.Some(2)
 
       // when
       val filteredValue = option.filter(_ != 2)
 
       // then
-      filteredValue shouldEqual None
+      filteredValue shouldEqual errors.None
 
     }
   }
@@ -174,7 +177,7 @@ class OptionTest extends WordSpec with Matchers {
       val v = variance(seq)
 
       // then
-      v shouldEqual None
+      v shouldEqual errors.None
     }
 
     "be calciulated for one element sequence" in {
@@ -186,7 +189,7 @@ class OptionTest extends WordSpec with Matchers {
       val v = variance(seq)
 
       // then
-      v shouldEqual Some(0.0)
+      v shouldEqual errors.Some(0.0)
 
     }
 
@@ -199,7 +202,7 @@ class OptionTest extends WordSpec with Matchers {
       val v = variance(seq)
 
       // then
-      v shouldEqual Some(1.0)
+      v shouldEqual errors.Some(1.0)
     }
   }
 
@@ -211,10 +214,10 @@ class OptionTest extends WordSpec with Matchers {
       val absLift = lift(math.abs)
 
       // when
-      val absOption = absLift(None)
+      val absOption = absLift(errors.None)
 
       // then
-      absOption shouldEqual None
+      absOption shouldEqual errors.None
     }
 
     "create abs function that returns abs value for Some" in {
@@ -223,10 +226,10 @@ class OptionTest extends WordSpec with Matchers {
       val absLift = lift(math.abs)
 
       // when
-      val absOption = absLift(Some(-3))
+      val absOption = absLift(errors.Some(-3))
 
       // then
-      absOption shouldEqual Some(3)
+      absOption shouldEqual errors.Some(3)
     }
   }
 
@@ -235,52 +238,52 @@ class OptionTest extends WordSpec with Matchers {
     "return none for two Nones" in {
 
       // given
-      val first: Option[Int] = None
-      val second: Option[Int] = None
+      val first: errors.Option[Int] = errors.None
+      val second: errors.Option[Int] = errors.None
 
       // when
       val result = map2(first, second)((a,b) => a + b)
 
       // then
-      result shouldEqual None
+      result shouldEqual errors.None
     }
 
     "return None if first argument is None" in {
 
       // given
-      val first: Option[Int] = None
-      val second: Option[Int] = Some(3)
+      val first: errors.Option[Int] = errors.None
+      val second: errors.Option[Int] = errors.Some(3)
 
       // when
       val result = map2(first, second)((a,b) => a + b)
 
       // then
-      result shouldEqual None
+      result shouldEqual errors.None
     }
 
     "return None if second argument is None" in {
 
       // given
-      val first: Option[Int] = Some(3)
-      val second: Option[Int] = None
+      val first: errors.Option[Int] = errors.Some(3)
+      val second: errors.Option[Int] = errors.None
 
       // when
       val result = map2(first, second)((a,b) => a + b)
 
       // then
-      result shouldEqual None
+      result shouldEqual errors.None
     }
 
     "map both options with function in case of two Some" in {
 
-      val first: Option[Int] = Some(3)
-      val second: Option[Int] = Some(6)
+      val first: errors.Option[Int] = errors.Some(3)
+      val second: errors.Option[Int] = errors.Some(6)
 
       // when
       val result = map2(first, second)((a,b) => a + b)
 
       // then
-      result shouldEqual Some(9)
+      result shouldEqual errors.Some(9)
     }
   }
 
@@ -289,49 +292,49 @@ class OptionTest extends WordSpec with Matchers {
     "combine one Some to sequence" in {
 
       // given
-      val sequenceOfOptions = scala.collection.immutable.List(Some(3))
+      val sequenceOfOptions = scala.collection.immutable.List(errors.Some(3))
 
       // when
       val s = sequence(sequenceOfOptions)
 
       // then
-      s shouldEqual Some(scala.collection.immutable.List(3))
+      s shouldEqual errors.Some(scala.collection.immutable.List(3))
     }
 
     "combine two Some to sequence" in {
 
       // given
-      val sequenceOfOptions = scala.collection.immutable.List(Some(3), Some(4))
+      val sequenceOfOptions = scala.collection.immutable.List(errors.Some(3), errors.Some(4))
 
       // when
       val s = sequence(sequenceOfOptions)
 
       // then
-      s shouldEqual Some(scala.collection.immutable.List(3, 4))
+      s shouldEqual errors.Some(scala.collection.immutable.List(3, 4))
     }
 
     "create none if one of the inputs of two elements sequence is none" in {
 
       // given
-      val sequenceOfOptions = scala.collection.immutable.List(Some(3), None)
+      val sequenceOfOptions = scala.collection.immutable.List(errors.Some(3), errors.None)
 
       // when
       val s = sequence(sequenceOfOptions)
 
       // then
-      s shouldEqual None
+      s shouldEqual errors.None
     }
 
     "create none if one of the inputs of multiple elements sequence is none" in {
 
       // given
-      val sequenceOfOptions = scala.collection.immutable.List(Some(1), Some(2), Some(3), None, Some(4), Some(5))
+      val sequenceOfOptions = scala.collection.immutable.List(errors.Some(1), errors.Some(2), errors.Some(3), errors.None, errors.Some(4), errors.Some(5))
 
       // when
       val s = sequence(sequenceOfOptions)
 
       // then
-      s shouldEqual None
+      s shouldEqual errors.None
     }
 
     "create empty list if input list is empty" in {
@@ -343,7 +346,7 @@ class OptionTest extends WordSpec with Matchers {
       val s = sequence(sequenceOfOptions)
 
       // then
-      s shouldEqual Some(scala.collection.immutable.List())
+      s shouldEqual errors.Some(scala.collection.immutable.List())
     }
 
   }

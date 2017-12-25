@@ -1,3 +1,5 @@
+package com.stackframelayout.minefields.funprog.collections
+
 import scala.annotation.tailrec
 
 /**
@@ -8,6 +10,8 @@ import scala.annotation.tailrec
   */
 sealed trait List[+A]
 
+case class Cons[+A](head: A, tail: List[A]) extends List[A]
+
 /**
   * Case objects can take part in pattern matching
   *
@@ -16,7 +20,6 @@ sealed trait List[+A]
   */
 case object Nil extends List[Nothing]
 
-case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
 /**
   * This is so called 'companion object' it have the same name as a type List

@@ -1,8 +1,10 @@
+package com.stackframelayout.minefields.funprog.functions
+
 import org.scalatest.{Matchers, WordSpec}
 
 class HigherOrderFunctionsTest extends WordSpec with Matchers {
 
-  import HigherOrderFunctions._
+  import com.stackframelayout.minefields.funprog.functions.HigherOrderFunctions._
 
   "partial application" should {
 

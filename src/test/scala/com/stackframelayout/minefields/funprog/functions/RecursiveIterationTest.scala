@@ -1,5 +1,7 @@
+package com.stackframelayout.minefields.funprog.functions
+
+import com.stackframelayout.minefields.funprog.functions.RecursiveIteration._
 import org.scalatest.{Matchers, WordSpec}
-import RecursiveIteration._
 
 class RecursiveIterationTest extends WordSpec with Matchers {
 
