@@ -283,4 +283,68 @@ class OptionTest extends WordSpec with Matchers {
       result shouldEqual Some(9)
     }
   }
+
+  "sequence function" should {
+
+    "combine one Some to sequence" in {
+
+      // given
+      val sequenceOfOptions = scala.collection.immutable.List(Some(3))
+
+      // when
+      val s = sequence(sequenceOfOptions)
+
+      // then
+      s shouldEqual Some(scala.collection.immutable.List(3))
+    }
+
+    "combine two Some to sequence" in {
+
+      // given
+      val sequenceOfOptions = scala.collection.immutable.List(Some(3), Some(4))
+
+      // when
+      val s = sequence(sequenceOfOptions)
+
+      // then
+      s shouldEqual Some(scala.collection.immutable.List(3, 4))
+    }
+
+    "create none if one of the inputs of two elements sequence is none" in {
+
+      // given
+      val sequenceOfOptions = scala.collection.immutable.List(Some(3), None)
+
+      // when
+      val s = sequence(sequenceOfOptions)
+
+      // then
+      s shouldEqual None
+    }
+
+    "create none if one of the inputs of multiple elements sequence is none" in {
+
+      // given
+      val sequenceOfOptions = scala.collection.immutable.List(Some(1), Some(2), Some(3), None, Some(4), Some(5))
+
+      // when
+      val s = sequence(sequenceOfOptions)
+
+      // then
+      s shouldEqual None
+    }
+
+    "create empty list if input list is empty" in {
+
+      // given
+      val sequenceOfOptions = scala.collection.immutable.List()
+
+      // when
+      val s = sequence(sequenceOfOptions)
+
+      // then
+      s shouldEqual Some(scala.collection.immutable.List())
+    }
+
+  }
 }

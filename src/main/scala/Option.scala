@@ -47,4 +47,7 @@ object Option {
       case _ => None
     }
   }
+
+  def sequence[A](xs: scala.collection.immutable.List[Option[A]]): Option[scala.collection.immutable.List[A]] =
+    if(xs.contains(None)) None else Some(xs.map { case Some(a) => a })
 }
