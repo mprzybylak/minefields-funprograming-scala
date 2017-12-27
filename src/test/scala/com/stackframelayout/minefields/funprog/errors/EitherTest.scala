@@ -2,7 +2,7 @@ package com.stackframelayout.minefields.funprog.errors
 
 import org.scalatest.{Matchers, WordSpec}
 
-class RightTest extends WordSpec with Matchers {
+class EitherTest extends WordSpec with Matchers {
 
   "map method" should {
 
@@ -94,6 +94,45 @@ class RightTest extends WordSpec with Matchers {
 
       // then
       newEither shouldEqual Right(10)
+    }
+  }
+
+  "map2" should {
+    "return Left in case of Left" in {
+
+      // given
+      val either: Either[String, Int] = Left("error")
+
+      // when
+      val newEither = either.map2(Right(10))((a,b) => a + b)
+
+      // then
+      newEither shouldEqual Left("error")
+    }
+
+    "return Left in case if other either is Left" in {
+
+      // given
+      val either: Either[String, Int] = Right(10)
+
+      // when
+      val newEither = either.map2(Left("err"): Either[String, Int])((a,b) => a+b)
+
+      // then
+      newEither shouldEqual Left("err")
+    }
+
+    "return Right in case of two Rights" in {
+
+      // given
+      val either: Either[String, Int] = Right(10)
+
+      // when
+      val newEither = either.map2(Right(30))((a,b) => a+b)
+
+      // then
+      newEither shouldEqual Right(40)
+
     }
   }
 }
