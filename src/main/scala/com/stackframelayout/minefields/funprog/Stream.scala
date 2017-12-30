@@ -3,12 +3,14 @@ package com.stackframelayout.minefields.funprog
 sealed trait Stream[+A] {
   def toList: List[A]
   def take(n: Int): Stream[A]
+  def drop(n: Int): Stream[A]
 }
 
 
 case object Empty extends Stream[Nothing] {
   override def toList: List[Nothing] = Nil
   override def take(n: Int): Stream[Nothing] = this
+  override def drop(n: Int): Stream[Nothing] = this
 }
 
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
@@ -19,6 +21,8 @@ case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
   override def take(n: Int): Stream[A] =
     if(n < 2) Cons(h, () => Empty) else  Cons(h, () => t().take(n-1))
 
+  override def drop(n: Int): Stream[A] =
+    if(n < 1) Cons(h, t) else t().drop(n - 1)
 }
 
 object Stream {

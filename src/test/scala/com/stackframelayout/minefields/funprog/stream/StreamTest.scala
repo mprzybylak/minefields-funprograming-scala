@@ -94,7 +94,7 @@ class StreamTest extends WordSpec with Matchers {
 
   "take method" should {
 
-    "return empty list for empty list" in {
+    "return stream list for stream list" in {
 
       // given
       val stream = Stream()
@@ -143,4 +143,39 @@ class StreamTest extends WordSpec with Matchers {
     }
   }
 
+  "drop method" should {
+
+    "return empty stream for empty stream" in {
+
+      // given
+      val stream = Stream()
+
+      // when
+      val dropStream = stream.drop(1)
+    }
+
+    "return stream with the same elements in case of size of the drop is equal to 0 of the stream" in {
+
+      // given
+      val stream = Stream(1, 2, 3)
+
+      // when
+      val dropStream = stream.drop(0)
+
+      // then
+      dropStream.toList shouldEqual List(1, 2, 3)
+    }
+
+    "return stream without first element for drop size = 0" in {
+
+      // given
+      val stream = Stream(1, 2, 3)
+
+      // when
+      val dropStream = stream.drop(1)
+
+      // then
+      dropStream.toList shouldEqual List(2, 3)
+    }
+  }
 }
