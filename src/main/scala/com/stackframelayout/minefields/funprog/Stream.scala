@@ -4,13 +4,14 @@ sealed trait Stream[+A] {
   def toList: List[A]
   def take(n: Int): Stream[A]
   def drop(n: Int): Stream[A]
+  def takeWhile(p: A => Boolean): Stream[A]
 }
-
 
 case object Empty extends Stream[Nothing] {
   override def toList: List[Nothing] = Nil
   override def take(n: Int): Stream[Nothing] = this
   override def drop(n: Int): Stream[Nothing] = this
+  override def takeWhile(p: Nothing => Boolean): Stream[Nothing] = this
 }
 
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
@@ -23,6 +24,9 @@ case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
 
   override def drop(n: Int): Stream[A] =
     if(n < 1) Cons(h, t) else t().drop(n - 1)
+
+  override def takeWhile(f: A => Boolean): Stream[A] =
+    if(f(h())) Cons(h, () => t().takeWhile(f)) else Empty
 }
 
 object Stream {

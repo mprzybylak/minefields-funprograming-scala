@@ -1,7 +1,6 @@
 package com.stackframelayout.minefields.funprog.stream
 
-import com.stackframelayout.minefields.funprog.Stream.emptyStream
-import com.stackframelayout.minefields.funprog.{Cons, Empty, Stream}
+import com.stackframelayout.minefields.funprog.{Empty, Stream}
 import org.scalatest.{Matchers, WordSpec}
 
 class StreamTest extends WordSpec with Matchers {
@@ -177,5 +176,57 @@ class StreamTest extends WordSpec with Matchers {
       // then
       dropStream.toList shouldEqual List(2, 3)
     }
+  }
+
+  "take while method" should {
+
+    "return empty stream for stream" in {
+
+      // given
+      val stream = Stream()
+
+      // when
+      val takeWhileStream = stream.takeWhile(_ => true)
+
+      // then
+      takeWhileStream shouldEqual Empty
+    }
+
+    "return empty stream when predicate is always false" in {
+
+      // given
+      val stream = Stream()
+
+      // when
+      val takeWhileStream = stream.takeWhile(_ => false)
+
+      // then
+      takeWhileStream shouldEqual Empty
+    }
+
+    "return first element if only first matches predicate" in {
+
+      // given
+      val stream = Stream(1, 2, 3)
+
+      // when
+      val takeWhileStream = stream.takeWhile(_ == 1)
+
+      // then
+      takeWhileStream.toList shouldEqual List(1)
+    }
+
+    "return subset of stream that match predicate" in {
+
+      // given
+      val stream = Stream(1, 2, 3)
+
+      // when
+      val takeWhileStream = stream.takeWhile(_ < 3)
+
+      // then
+      takeWhileStream.toList shouldEqual List(1, 2)
+    }
+
   }
 }
