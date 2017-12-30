@@ -1,6 +1,7 @@
 package com.stackframelayout.minefields.funprog
 
 sealed trait Stream[+A] {
+  def headOption: Option[A]
   def toList: List[A]
   def take(n: Int): Stream[A]
   def drop(n: Int): Stream[A]
@@ -12,6 +13,7 @@ case object Empty extends Stream[Nothing] {
   override def take(n: Int): Stream[Nothing] = this
   override def drop(n: Int): Stream[Nothing] = this
   override def takeWhile(p: Nothing => Boolean): Stream[Nothing] = this
+  override def headOption: Option[Nothing] = None
 }
 
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
@@ -27,6 +29,8 @@ case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
 
   override def takeWhile(f: A => Boolean): Stream[A] =
     if(f(h())) Cons(h, () => t().takeWhile(f)) else Empty
+
+  override def headOption = Some(h())
 }
 
 object Stream {
@@ -38,12 +42,6 @@ object Stream {
     Cons(() => head, () => tail)
   }
 
-
   def apply[A](as: A*): Stream[A] =
     if (as.isEmpty) emptyStream else consStream(as.head, apply(as.tail :_*))
-
-  def headOption[A](s: Stream[A]): Option[A] = s match {
-    case Empty => None
-    case Cons(h, _) => Some(h())
-  }
 }

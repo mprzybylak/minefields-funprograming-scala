@@ -33,7 +33,7 @@ class StreamTest extends WordSpec with Matchers {
       val stream = emptyStream
 
       // when
-      val head = headOption(stream)
+      val head = stream.headOption
 
       // then
       head shouldBe None
@@ -45,7 +45,7 @@ class StreamTest extends WordSpec with Matchers {
       val stream = Stream(1)
 
       // when
-      val head = headOption(stream)
+      val head = stream.headOption
 
       // then
       head shouldBe Some(1)
