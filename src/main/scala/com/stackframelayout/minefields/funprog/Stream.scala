@@ -6,6 +6,8 @@ sealed trait Stream[+A] {
   def take(n: Int): Stream[A]
   def drop(n: Int): Stream[A]
   def takeWhile(p: A => Boolean): Stream[A]
+  def exists(p: A => Boolean): Boolean
+  def foldRight[B](z: => B)(f: (A, => B) => B): B
 }
 
 case object Empty extends Stream[Nothing] {
@@ -14,11 +16,13 @@ case object Empty extends Stream[Nothing] {
   override def drop(n: Int): Stream[Nothing] = this
   override def takeWhile(p: Nothing => Boolean): Stream[Nothing] = this
   override def headOption: Option[Nothing] = None
+  override def exists(p: Nothing => Boolean): Boolean = false
+  override def foldRight[B](z: => B)(f: (Nothing, => B) => B): B = ???
 }
 
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
   override def toList: List[A] = this match {
-    case c: Cons[A] => List(h()) ++ t().toList
+    case _: Cons[A] => List(h()) ++ t().toList
   }
 
   override def take(n: Int): Stream[A] =
@@ -31,6 +35,11 @@ case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A] {
     if(f(h())) Cons(h, () => t().takeWhile(f)) else Empty
 
   override def headOption = Some(h())
+
+  override def exists(f: A => Boolean): Boolean =
+    if(f(h())) true else t().exists(f)
+
+  override def foldRight[B](z: => B)(f: (A, => B) => B): B = ???
 }
 
 object Stream {

@@ -227,6 +227,60 @@ class StreamTest extends WordSpec with Matchers {
       // then
       takeWhileStream.toList shouldEqual List(1, 2)
     }
+  }
+
+  "exists method" should {
+
+    "return false for empty stream" in {
+
+      // given
+      val stream = Stream()
+
+      // when
+      val isExist = stream.exists(_ => true)
+
+      // then
+      isExist shouldEqual false
+    }
+
+    "return false for stream if none of elements match predicate" in {
+
+      // given
+      val stream = Stream(1, 2, 3)
+
+      // when
+      val isExist = stream.exists(_ => false)
+
+      // then
+      isExist shouldEqual false
+    }
+
+    "return true if any element of stream matches predicate" in {
+
+      // given
+      val stream = Stream(1, 2, 3)
+
+      // when
+      val isExist = stream.exists(_ == 2)
+
+      // then
+      isExist shouldEqual true
+    }
+  }
+
+  "fold right" should {
+
+    "return zero element for empty stream" ignore {
+
+      // given
+      val stream: Stream[Int] = Stream()
+
+      // when
+      val foldValue = stream.foldRight(10)((a, b) => a + b)
+
+      // then
+      foldValue shouldEqual 10
+    }
 
   }
 }
